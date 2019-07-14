@@ -1,10 +1,10 @@
-% IRK2s_order
+% IRK2s_order.m
 % Implicit Runge-Kutta(Gauss method) 2 stage and order 4
 % u'=u in [0,1] with initial condition u(0)=1
 % exact solution: ue=exp(x)
 clear all; close all
 Nvec=[10 50 100 200 500 1000];
-MErr=[];
+Err=[];
 for n=1:length(Nvec)
     N=Nvec(n);
     h=1/N;
@@ -29,20 +29,20 @@ for n=1:length(Nvec)
         k2=r(2);
         u(i+1)=k+(h/2)*(k1+k2);
     end
-    ue=exp(x);                   % exact solution
-    Merr=max(abs(u-ue));  % maximum error
-    MErr=[MErr,Merr];
+    ue=exp(x);             % exact solution
+    err=max(abs(u-ue));    % maximum error
+    Err=[Err,err];
 end
-plot(log10(Nvec),log10(MErr),'r*-','LineWidth',1.5)
+plot(log10(Nvec),log10(Err),'ro-','MarkerFaceColor','w','LineWidth',1.5)
 hold on,
 plot(log10(Nvec), log10(Nvec.^(-4)), '--')
 grid on,
-xlabel('N','fontsize', 16), ylabel('Error','fontsize',16)
+xlabel('log_{10}N','fontsize', 16), ylabel('log_{10}Error','fontsize',16)
 title('Convergence order of Gauss method ','fontsize',14)
 set(gca,'fontsize',14)
 
 for i=1:length(Nvec)-1     % computating convergence order
-    order(i)=-log(MErr(i)/MErr(i+1))/(log(Nvec(i)/Nvec(i+1)));
+    order(i)=-log(Err(i)/Err(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end
-MErr
+Err
 order

@@ -1,14 +1,14 @@
 % RungeKutta.m
-% Runge-Kutta method for a first-order ODE
+% Runge-Kutta method for the ODE model
 % u'=t^2+t-u,  t \in [0,1]
 % Initial value : u(0)=0
 % Exact : u(t)=-exp(-t)+t^2-t+1.
 clear all
 h=0.1;
-x=0:h:1;                           % function interval
+x=0:h:1;                     % function interval
 n=length(x)-1;
-u(1)=0;                            % initial value
-fun=@(t,u) t.^2+t-u;       % RHS
+u(1)=0;                      % initial value
+fun=@(t,u) t.^2+t-u;         % RHS
 for i=1:n
     k1=fun(x(i),u(i));
     k2=fun(x(i)+h./2,u(i)+h.*k1/2);
