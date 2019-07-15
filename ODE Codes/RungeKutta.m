@@ -1,7 +1,7 @@
 % RungeKutta.m
 % Runge-Kutta method for the ODE model
 % u'=t^2+t-u,  t \in [0,1]
-% Initial value : u(0)=0
+% Initial condition : u(0)=0
 % Exact : u(t)=-exp(-t)+t^2-t+1.
 clear all
 h=0.1;

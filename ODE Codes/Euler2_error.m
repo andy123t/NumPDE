@@ -1,7 +1,7 @@
-% Euler2_order.m
+% Euler2_error.m
 % Modified Euler method for the ODE model
 % u'(t)=t^2+t-u, t \in [0,2] 
-% Initial value : u(0)=0 ;
+% Initial condition : u(0)=0 ;
 % Exact solution : u(t)=-exp(-t)+t^2-t+1.
 clear all
 Nvec=[10 50 100 500 1000];        % Number of splits

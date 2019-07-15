@@ -1,4 +1,4 @@
-% IRK2s_order.m
+% IRK2s_error.m
 % Implicit Runge-Kutta(Gauss method) 2 stage and order 4
 % u'=u in [0,1] with initial condition u(0)=1
 % exact solution: ue=exp(x)
