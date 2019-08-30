@@ -31,5 +31,5 @@ set(gca,'fontsize',14)
 for i=1:length(Nvec)-1     % computating convergence order
     order(i)=-log(Error(i)/Error(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end
-Error
+Error   
 order

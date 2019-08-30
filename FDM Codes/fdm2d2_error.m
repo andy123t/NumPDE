@@ -1,4 +1,4 @@
-% fdm2d2_error.m
+% fdm2d2_error.m 
 % finite difference method for 2D problem
 % -\Delta u=cos(3*x)*sin(pi*y)  in (0,pi)x(0,1)
 % u(x,0)=u(x,1)=0  in [0,pi]
@@ -46,5 +46,4 @@ set(gca,'fontsize',14)
 for i=1:length(Nvec)-1     % computating convergence order
     order(i)=log(MErr(i)/MErr(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end
-MErr
 order

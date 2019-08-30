@@ -19,3 +19,4 @@ xlabel('x','fontsize', 16), ylabel('y','fontsize',16,'Rotation',0)
 legend('Exact ','Numerical','location','North')
 title('Finite Difference Method','fontsize',14)
 set(gca,'fontsize',14)
+
