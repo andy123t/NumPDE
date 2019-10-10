@@ -3,7 +3,7 @@
 % -u''+u'=pi^2*sin(pi*x)+pi*cos(pi*x)  in [0,1]
 % u(0)=0, u(1)=0 ;
 % exact solution : u=sin(pi*x)
-clear all
+clear all;  clf
 h=0.05;
 x=0:h:1;
 N=length(x)-1;
@@ -20,3 +20,7 @@ xlabel('x','fontsize', 16), ylabel('y','fontsize',16,'Rotation',0)
 legend('Exact ','Numerical','location','North')
 title('Finite Difference Method','fontsize',14)
 set(gca,'fontsize',14)
+
+
+print -dpng -r600  fdm1d1.png
+

@@ -3,7 +3,7 @@
 % test function : u(y)=(1-y)^2*exp(y);
 % RHS : f(y)=(2-4*y)*exp(y); 
 % Rmk: Use routines legslb(); legslbdiff(); 
-clear all
+clear all;  clf
 Nvec=4:18;
 Errv=[]; condnv=[];
 for N=Nvec
@@ -25,7 +25,9 @@ for N=Nvec
     condnv=[condnv,cond(D)];
 end
 % Plot the L^2 error 
-plot(Nvec,log10(Errv),'d-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',1.5)
+plot(Nvec,log10(Errv),'s-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',1.5)
 grid on, xlabel('N','fontsize', 14), ylabel('log_{10}(Error)','fontsize',14),
 title('L^2 error of Legendre-collocation method','fontsize',12)
 
+
+print -dpng -r600  LegenCM3_error.png

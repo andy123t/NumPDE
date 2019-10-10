@@ -4,7 +4,7 @@
 % exact : u=x*(1-x)*sin(x)
 % RHS: f=(4*x-2).*cos(x)+(2+2*x-2*x^2).*sin(x);
 % Thanks to the code from Shuangshuang Li & Qian Tong
-clear all
+clear all;  clf
 Num=[16 32 64 128 256 512];    % Number of splits
 Err=[];  DOF=[];
 for j=1:length(Num)
@@ -47,3 +47,5 @@ xlabel('log_{10}N','fontsize', 16), ylabel('log_{10}Error','fontsize',16),
 title('Convergence of Finite Element Method','fontsize',14)
 set(gca,'fontsize',14)
 
+
+print -dpng -r600  FEM1D.png

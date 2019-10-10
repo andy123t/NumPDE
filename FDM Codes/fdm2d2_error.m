@@ -4,7 +4,7 @@
 % u(x,0)=u(x,1)=0  in [0,pi]
 % u_x(0,y)=u_x(pi,y)=0 in [0,1]
 % exact solution: ue=(9+pi^2)^(-1)*cos(3*x)*sin(pi*y)
-clear all; close all;
+clear all; close all; clf
 Nvec=2.^[2:7];
 MErr=[];
 for N=Nvec
@@ -47,3 +47,6 @@ for i=1:length(Nvec)-1     % computating convergence order
     order(i)=log(MErr(i)/MErr(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end
 order
+
+
+print -dpng -r600  fdm2d2_error.png

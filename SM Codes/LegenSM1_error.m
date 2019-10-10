@@ -3,7 +3,7 @@
 % exact solution: u=sin(kw*pi*x); 
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+sin(kw*pi*x); 
 % Rmk: Use routines lepoly(); legs(); lepolym();
-clear all
+clear all;  clf
 kw=10;
 Nvec=[32:2:68];    % kw=10
 %Nvec=[4:2:22]    % kw=1
@@ -35,3 +35,5 @@ xlabel('N','fontsize', 14), ylabel('log10(Error)','fontsize',14)
 title('Round-off error of Legendre-Galerkin methods','fontsize',12)
 set(gca,'fontsize',12)
 
+
+print -dpng -r600  LegenSM1_error.png

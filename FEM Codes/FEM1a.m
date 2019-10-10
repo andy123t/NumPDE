@@ -3,7 +3,7 @@
 % -u_xx=-exp(x) in [0,1] 
 % u(0)=0, u'(1)=e;
 % exact solution: u=exp(x)-1.
-clear all
+clear all;  clf
 N=10;
 h=1/N;
 X=0:h:1;
@@ -39,3 +39,6 @@ xlabel('x','fontsize', 14), ylabel('y','fontsize',14,'Rotation',0)
 title('Numerical solutions vs Exact solutions','fontsize',14),
 legend('Exact solutions','Numerical solutions',0)
 set(gca,'fontsize',14)
+
+
+print -dpng -r600  FEM1a.png

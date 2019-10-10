@@ -3,7 +3,7 @@
 % -(xu')'+x*u'=pi^2*x*sin(pi*x)-pi*cos(pi*x)+pi*x*cos(pi*x) in [0,1]
 % u(0)=0, u(1)=0 ;
 % exact solution : u=sin(pi*x)
-clear all
+clear all;  clf
 Nvec=[10 20 50 100 200 500 1000];    % Number of splits
 Error=[];
 for k=1:length(Nvec)
@@ -32,3 +32,6 @@ for i=1:length(Nvec)-1     % computating convergence order
 end
 Error
 order
+
+
+print -dpng -r600  fdm1d2_error.png

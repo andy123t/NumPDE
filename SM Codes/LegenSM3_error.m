@@ -5,7 +5,7 @@
 % boundary condition: U(-1)=0, U'(1)=0;
 % exact solution: U=(1/2-1/2*x)^2*exp(1/2*x+1/2)-1;
 % RHS:  F=-2*x*exp(1/2*x+1/2)-1.
-clear all
+clear all;  clf
 Nvec=2:16;  
 Errv=[];  condnv=[];                % Initialization for error and condition number
 for N=Nvec
@@ -36,8 +36,11 @@ for N=Nvec
     condnv=[condnv,cond(A)];   % condition number of A
 end
 % Plot the maximum pointwise error
-plot(Nvec,log10(Errv),'o-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',2)
+plot(Nvec,log10(Errv),'s-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',1.5)
 grid on, 
 xlabel('N','fontsize', 14), ylabel('log_{10}(Error)','fontsize',14)
 title('L^2 error of Legendre-Galerkin method','fontsize',12)
 set(gca,'fontsize',12)
+
+
+print -dpng -r600  LegenSM3_error.png

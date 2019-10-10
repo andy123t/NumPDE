@@ -3,7 +3,7 @@
 % u'(t)=t^2+t-u, t \in [0,2] 
 % Initial condition : u(0)=0 ;
 % Exact solution : u(t)=-exp(-t)+t^2-t+1.
-clear all
+clear all;  clf
 Nvec=[10 50 100 500 1000];        % Number of splits
 Error=[];
 fun=@(t,u) t.^2+t-u;              % RHS
@@ -33,3 +33,6 @@ for i=1:length(Nvec)-1     % computating convergence order
 end
 Error
 order
+
+
+print -dpng -r600  Euler2_error.png

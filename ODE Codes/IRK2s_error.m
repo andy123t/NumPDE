@@ -2,7 +2,7 @@
 % Implicit Runge-Kutta(Gauss method) 2 stage and order 4
 % u'=u in [0,1] with initial condition u(0)=1
 % exact solution: ue=exp(x)
-clear all; close all
+clear all;  close all;  clf
 Nvec=[10 50 100 200 500 1000];
 Err=[];
 for n=1:length(Nvec)
@@ -46,3 +46,6 @@ for i=1:length(Nvec)-1     % computating convergence order
 end
 Err
 order
+
+
+print -dpng -r600  IRK2s_error.png

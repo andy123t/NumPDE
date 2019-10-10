@@ -4,7 +4,7 @@
 % exact solution: u=sin(kw*pi*xv); 
 % RHS: f=kw*kw*pi^2*sin(kw*pi*xv)+sin(kw*pi*xv); 
 % Rmk: Use routines lepoly(); legs(); lepolym();
-clear all
+clear all;  clf
 kw=10;
 Nvec=[32:2:68];
 Errv=[];
@@ -30,8 +30,10 @@ for N=Nvec
     Errv=[Errv;error]; 
 end
 % Plot the maximum pointwise error
-plot(Nvec,log10(Errv),'mo-','MarkerFaceColor','w','LineWidth',1.5)
+plot(Nvec,log10(Errv),'md-','MarkerFaceColor','w','LineWidth',1.5)
 grid on, xlabel('N','fontsize', 14), ylabel('log10(Error)','fontsize',14) 
 title('Round-off error of Legendre-Galerkin methods','fontsize',12)
 set(gca,'fontsize',12)
 
+
+print -dpng -r600  LegenSM2_error.png

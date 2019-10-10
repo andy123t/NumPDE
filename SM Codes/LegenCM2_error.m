@@ -4,7 +4,7 @@
 % exact solution: u=sin(kw*pi*x); 
 % RHS: f(x)=kw^2*pi^2*sin(kw*pi*x)+sin(kw*pi*x)+kw*pi*cos(kw*pi*x); 
 % Rmk: Use routines lepoly(); legslb(); legslbdm(); 
-clear all
+clear all;  clf
 kw=10;
 Nv=[32:2:68]; 
 Errv=[];
@@ -29,3 +29,5 @@ grid on,
 xlabel('N','fontsize', 14), ylabel('log10(Error)','fontsize',14)
 title('Convergence of Legendre-collocation method','fontsize',12)
 
+
+print -dpng -r600  LegenCM2_error.png

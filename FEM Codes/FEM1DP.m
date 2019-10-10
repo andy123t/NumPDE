@@ -5,7 +5,7 @@
 % right hand function: f=(4*x-2).*cos(x)+(2+2*x-2*x^2).*sin(x)
 % Thanks to the code from Shuangshuang Li & Qian Tong
 
-clear all
+clear all;  clf
 Num=[16 32 64 128 256 512]
 node_Err=[];   L2_Err=[];  H1_Err=[];  DOF=[];
 for j=1:length(Num)
@@ -75,3 +75,5 @@ node_order
 L2_order
 H1_order
 
+
+print -dpng -r600  FEM1DP.png

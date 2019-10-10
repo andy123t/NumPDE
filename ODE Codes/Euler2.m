@@ -3,7 +3,7 @@
 % u'=t^2+t-u,  t \in [0,1]
 % Initial condition : u(0)=0
 % Exact solution : u(t)=-exp(-t)+t^2-t+1.
-clear all
+clear all;  clf
 h=0.1;
 x=0:h:1;                     % function interval
 n=length(x)-1;
@@ -20,3 +20,6 @@ xlabel('x','fontsize', 16), ylabel('y','fontsize',16,'Rotation',0)
 legend('Exact','Numerical','location','North')
 title('Modified Euler Method','fontsize',14)
 set(gca,'fontsize',14)
+
+
+print -dpng -r600  Euler2.png

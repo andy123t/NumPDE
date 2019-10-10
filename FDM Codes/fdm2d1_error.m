@@ -3,7 +3,7 @@
 % -d^2u/dx^2-d^2u/dy^2=f(x,y)
 % f(x,y)=-2*pi^2*exp(pi*(x+y))*(sin(pi*x)*cos(pi*y)+cos(pi*x)*sin(pi*y))
 % exact solution: ue=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)
-clear all
+clear all;  clf
 Nvec=2.^[3:10];
 Err=[];
 for n=Nvec
@@ -48,3 +48,6 @@ for i=1:length(Nvec)-1     % computating convergence order
 end
 Err
 order
+
+
+print -dpng -r600  fdm2d1_error.png

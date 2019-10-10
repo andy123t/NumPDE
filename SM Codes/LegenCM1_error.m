@@ -4,7 +4,7 @@
 % exact solution: u=sin(kw*pi*x); 
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+alpha*sin(kw*pi*x); 
 % Rmk: Use routines lepoly(); legslb(); legslbdm();
-clear all
+clear all;  clf
 alpha=1;
 kw=10; 
 N=32; 
@@ -27,9 +27,11 @@ for N=Nvec
     error=norm(abs(un-u),inf);  % maximum pointwise error
     Errv=[Errv;error];
 end;
-  plot(Nvec,log10(Errv),'rd-','MarkerFaceColor','w','LineWidth',1.5)
+  plot(Nvec,log10(Errv),'ro-','MarkerFaceColor','w','LineWidth',1.5)
   grid on, xlabel('N','fontsize', 14), ylabel('log10(Error)','fontsize',14)
   title('Convergence of Legendre-collocation method','fontsize',12)
   set(gca,'fontsize',12) 
   
+  
+  print -dpng -r600  LegenCM1_error.png
   
