@@ -26,7 +26,7 @@ for N=Nvec
 end
 % Plot the L^2 error 
 plot(Nvec,log10(Errv),'s-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',1.5)
-grid on, xlabel('N','fontsize', 14), ylabel('log_{10}(Error)','fontsize',14),
+grid on, xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14),
 title('L^2 error of Legendre-collocation method','fontsize',12)
 
 

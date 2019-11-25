@@ -26,8 +26,8 @@ end
 % Plot the maximum pointwise error 
 plot(Nv,log10(Errv),'md-','MarkerFaceColor','w','LineWidth',1.5)
 grid on, 
-xlabel('N','fontsize', 14), ylabel('log10(Error)','fontsize',14)
-title('Convergence of Legendre-collocation method','fontsize',12)
+xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+title('L^{\infty} error of Legendre-collocation method','fontsize',12)
 
 
 print -dpng -r600  LegenCM2_error.png

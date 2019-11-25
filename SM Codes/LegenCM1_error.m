@@ -24,12 +24,13 @@ for N=Nvec
     un=D\b;
     un=[0;un;0];               % Solve the system
     
-    error=norm(abs(un-u),inf);  % maximum pointwise error
+    %error=norm(abs(un-u),inf);  % maximum pointwise error
+    error=norm(abs(un-u),2);  % L^2 error
     Errv=[Errv;error];
 end;
   plot(Nvec,log10(Errv),'ro-','MarkerFaceColor','w','LineWidth',1.5)
-  grid on, xlabel('N','fontsize', 14), ylabel('log10(Error)','fontsize',14)
-  title('Convergence of Legendre-collocation method','fontsize',12)
+  grid on, xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+  title('L^{2} error of Legendre-collocation method','fontsize',12)
   set(gca,'fontsize',12) 
   
   
