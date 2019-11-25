@@ -7,10 +7,10 @@
 % RHS:  F=-2*x*exp(1/2*x+1/2)-1.
 clear all;  clf
 Nvec=3:16;  
-Errv=[];  condnv=[];                % Initialization for error and condition number
+Errv=[];  condnv=[];             % Initialization for error and condition number
 for N=Nvec
-    [xv,wv]=legs(N+1);               % xv and wv are Legendre-Gauss points and weights
-    Lm=lepolym(N,xv);      % Lm is a Legendre polynomal matrix 
+    [xv,wv]=legs(N+1);           % Legendre-Gauss points and weights
+    Lm=lepolym(N,xv);           % Lm is a Legendre polynomal matrix 
     yv=1/2*(xv+1);                 % variable substitution 
     U=(1-yv).^2.*exp(yv)-1;    % test function
     F=(2-4*yv).*exp(yv)-1;       % RHS in [0,1] 
@@ -27,11 +27,11 @@ for N=Nvec
     
     % Solving the linear system
     Pm=(Lm(1:end-2,:)+diag((2*e1+3)./(e1+2).^2)*Lm(2:end-1,:)-diag((e1+1).^2./(e1+2).^2)*Lm(3:end,:));
-    b=Pm*diag(wv)*F;          % Solving RHS
-    Uh=A\b;                      % expansion coefficients of u_N in terms of the basis
-    Un=Pm'*Uh;                   % compositing the numerical solution
+    b=Pm*diag(wv)*F;         % Solving RHS
+    Uh=A\b;                       % expansion coefficients of u_N in terms of the basis
+    Un=Pm'*Uh;                 % compositing the numerical solution
     
-    error=norm(abs(Un-U),2);  % L^2 error 
+    error=norm(abs(Un-U),2);    % L^2 error 
     Errv=[Errv;error];
     condnv=[condnv,cond(A)];   % condition number of A
 end
