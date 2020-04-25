@@ -28,6 +28,7 @@ for n=1:length(Nvec)
         k1=r(1);
         k2=r(2);
         u(i+1)=k+(h/2)*(k1+k2);
+        X0=r;
     end
     ue=exp(x);             % exact solution
     err=max(abs(u-ue));    % maximum error

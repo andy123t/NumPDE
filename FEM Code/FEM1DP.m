@@ -3,7 +3,7 @@
 % -u_xx+u=f in [0,1] with  boundary condition u(0)=u(1)=0;
 % exact solution: u=x*(1-x)*sin(x);
 % right hand function: f=(4*x-2).*cos(x)+(2+2*x-2*x^2).*sin(x)
-% Thanks to the code from Shuangshuang Li & Qian Tong
+% Code from teacher Yi Lijun
 
 clear all;  clf
 Num=[16 32 64 128 256 512]
