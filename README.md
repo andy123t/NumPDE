@@ -1,6 +1,6 @@
 # MATLAB-Code
 MATLAB notes and code for Numerical Methods in Differential Equations.
 
-My major is Computational Mathematics about Numerical Methods in Differential Equations. I write some MATLAB code, including Numerical Methods of ODEs, Finite Difference Methods, Finite Element Methods and Spectral Methods.
+My major is Computational Mathematics about numerical methods in differential equations. I write some MATLAB code, including numerical methods of ODEs, finite difference methods, finite element methods and spectral methods.
 
-I upload my code on github to force myself to write something seriously. I will gradually upload my code.
+I upload my code on Github to force myself to write something serious. I will gradually upload my code.
