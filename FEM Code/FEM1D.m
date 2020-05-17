@@ -3,7 +3,7 @@
 % -u_xx+u=f in (0,1) with boundary condition u(0)=u(1)=0;
 % exact : u=x*(1-x)*sin(x)
 % RHS: f=(4*x-2).*cos(x)+(2+2*x-2*x^2).*sin(x);
-% Code from teacher Yi Lijun
+% Modified from Yi Lijun's program
 clear all;  clf
 Num=[16 32 64 128 256 512];    % Number of splits
 Err=[];  DOF=[];
@@ -11,7 +11,7 @@ for j=1:length(Num)
     N=Num(j);    h=1/N;    x=0:h:1;
     % The global node number corresponds to element local node number
     M=[1:N;2:N+1];
-    [xv,wv]=jags(2,0,0);  % nodes and weights of gauss quadrature
+    [xv,wv]=jags(2,0,0); % nodes and weights of gauss quadrature
     
     K=zeros(N+1);        %  global stiffness matrix
     F=zeros(N+1,1);      %  RHS load vector
@@ -33,19 +33,18 @@ for j=1:length(Num)
     K(1,1)=1;   K(N+1,N+1)=1;
     F(1)=0;     F(N+1)=0;
 
-    U=K\F;        % numerical solution at the value of the node
+    U=K\F;     % numerical solution at the value of the node
     error=max(abs(U'-x.*(1-x).*sin(x)));  % node error
     doff=N+1;  % degrees of freedom, number of unknowns
     Err=[Err, error];
     DOF=[DOF, doff];
 end
 plot(log10(DOF),log10(Err),'ro-','MarkerFaceColor','w','LineWidth',1.5),
-hold on,
+hold on
 plot(log10(DOF),log10(DOF.^(-2)),'--')
-grid on,
-xlabel('log_{10}N','fontsize', 16), ylabel('log_{10}Error','fontsize',16),
-title('Convergence of Finite Element Method','fontsize',14)
+grid on
+%title('Convergence of Finite Element Method','fontsize',14)
 set(gca,'fontsize',14)
+xlabel('log_{10}N','fontsize',14), ylabel('log_{10}Error','fontsize',14),
 
-
-print -dpng -r600  FEM1D.png
+% print -dpng -r600  FEM1D.png

@@ -11,7 +11,7 @@ b=zeros(N,1);
 A=zeros(N,N);
 for i=2:N
     F1=@(x) N*(x-X(i-1)).*(-exp(x));     % handle
-    R1=integral(F1,X(i-1),X(i));             % numerical integration
+    R1=integral(F1,X(i-1),X(i));         % numerical integration
     F2=@(x) N*(X(i+1)-x).*(-exp(x));
     R2=integral(F2,X(i),X(i+1));
     b(i-1)=R1+R2;
@@ -34,11 +34,10 @@ ue=exp(X)-1;
 ue=ue';
 Error=norm(un-ue)
 % plot the figure
-plot(X,ue,'ro-',X,un,'b^','LineWidth',1.5)
-xlabel('x','fontsize', 14), ylabel('y','fontsize',14,'Rotation',0)
-title('Numerical solutions vs Exact solutions','fontsize',14),
-legend('Exact solutions','Numerical solutions',0)
-set(gca,'fontsize',14)
+plot(X,ue,'b-',X,un,'r+','LineWidth',1)
+%title('Numerical solutions vs Exact solutions','fontsize',14),
+legend('Exact solutions','Numerical solutions','location','NorthWest')
+set(gca,'fontsize',12)
+xlabel('x','fontsize', 14), ylabel('u','fontsize',14,'Rotation',0)
 
-
-print -dpng -r600  FEM1a.png
+% print -dpng -r600  FEM1a.png

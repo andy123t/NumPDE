@@ -35,18 +35,23 @@ for N=Nvec
     Merr=max(max(abs(u-ue)));   %maximum error
     MErr=[MErr,Merr];
 end
-plot(log10(Nvec),log10(MErr),'ro-','MarkerFaceColor','w','LineWidth',1.5)
+plot(log10(Nvec),log10(MErr),'ro-','MarkerFaceColor','w','LineWidth',1)
 hold on,
 plot(log10(Nvec), log10(Nvec.^(-1)), '--')
 grid on,
-xlabel('log_{10}N','fontsize', 16), ylabel('log_{10}Error','fontsize',16),
-title('Convergence of Finite Difference Method','fontsize',14)
+%title('Convergence of Finite Difference Method','fontsize',14)
 set(gca,'fontsize',14)
+xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14),
 
-for i=1:length(Nvec)-1     % computating convergence order
+% add annotation of slope
+ax = [0.64 0.60];
+ay = [0.69 0.64];
+annotation('textarrow',ax,ay,'String','slope = -1 ','fontsize',14)
+
+% computating convergence order
+for i=1:length(Nvec)-1
     order(i)=log(MErr(i)/MErr(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end
 order
 
-
-print -dpng -r600  fdm2d2_error.png
+% print -dpng -r600  fdm2d2_error.png

@@ -6,13 +6,13 @@
 % exact solution: U=(1/2-1/2*x)^2*exp(1/2*x+1/2)-1;
 % RHS:  F=-2*x*exp(1/2*x+1/2)-1.
 clear all;  clf
-Nvec=3:16;  
-Errv=[];  condnv=[];             % Initialization for error and condition number
+Nvec=3:18;  
+L2_Error=[];  condnv=[];             % Initialization for error and condition number
 for N=Nvec
     [xv,wv]=legs(N+1);           % Legendre-Gauss points and weights
-    Lm=lepolym(N,xv);           % Lm is a Legendre polynomal matrix 
-    yv=1/2*(xv+1);                 % variable substitution 
-    U=(1-yv).^2.*exp(yv)-1;    % test function
+    Lm=lepolym(N,xv);            % Lm is a Legendre polynomal matrix 
+    yv=1/2*(xv+1);               % variable substitution 
+    U=(1-yv).^2.*exp(yv)-1;      % test function
     F=(2-4*yv).*exp(yv)-1;       % RHS in [0,1] 
     
     % Calculting coefficient matrix
@@ -28,19 +28,24 @@ for N=Nvec
     % Solving the linear system
     Pm=(Lm(1:end-2,:)+diag((2*e1+3)./(e1+2).^2)*Lm(2:end-1,:)-diag((e1+1).^2./(e1+2).^2)*Lm(3:end,:));
     b=Pm*diag(wv)*F;         % Solving RHS
-    Uh=A\b;                       % expansion coefficients of u_N in terms of the basis
-    Un=Pm'*Uh;                 % compositing the numerical solution
+    Uh=A\b;                  % expansion coefficients of u_N in terms of the basis
+    Un=Pm'*Uh;               % compositing the numerical solution
     
-    error=norm(abs(Un-U),2);    % L^2 error 
-    Errv=[Errv;error];
-    condnv=[condnv,cond(A)];   % condition number of A
+    L2_error=norm(abs(Un-U),2);   % L2 error 
+    L2_Error=[L2_Error;L2_error];
+    condnv=[condnv,cond(A)];      % condition number of A
 end
-% Plot the maximum pointwise error
-plot(Nvec,log10(Errv),'s-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',1.5)
-grid on, 
-xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
-title('L^2 error of Legendre-Galerkin method','fontsize',12)
+% Plot L2 error
+plot(Nvec,log10(L2_Error),'s-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',1)
+grid on
+%title('L^2 error of Legendre-Galerkin method','fontsize',12)
 set(gca,'fontsize',12)
+xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
 
+% sets axis tick and axis limits
+xticks(2:2:18)
+yticks(-16:2:0)
+xlim([2 18])
+ylim([-16 0])
 
-print -dpng -r600  LegenSM3_error.png
+% print -dpng -r600  LegenSM3_error.png

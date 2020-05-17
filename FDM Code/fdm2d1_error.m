@@ -4,8 +4,8 @@
 % f(x,y)=-2*pi^2*exp(pi*(x+y))*(sin(pi*x)*cos(pi*y)+cos(pi*x)*sin(pi*y))
 % exact solution: ue=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)
 clear all;  clf
-Nvec=2.^[3:10];
-Err=[];
+Nvec=2.^[4:10];
+Error=[];
 for n=Nvec
    h=1/n;
    x=[0:h:1]';
@@ -32,22 +32,27 @@ for n=Nvec
    ue=zeros(M+1,N+1);
    % numerical solution
    ue(2:M,2:N)=exp(pi*X+pi*Y).*sin(pi*X).*sin(pi*Y);
-   err=max(max(abs(u-ue)));     % maximum error
-   Err=[Err,err];
+   error=max(max(abs(u-ue)));     % maximum error
+   Error=[Error,error];
 end
-plot(log10(Nvec),log10(Err),'ro-','MarkerFaceColor','w','LineWidth',1.5)
-hold on,
+plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
+hold on
 plot(log10(Nvec), log10(Nvec.^(-2)), '--')
-grid on,
-xlabel('log_{10}N','fontsize', 16), ylabel('log_{10}Error','fontsize',16),
-title('Convergence of Finite Difference Method','fontsize',14)
-set(gca,'fontsize',14)
+grid on
+%title('Convergence of Finite Difference Method','fontsize',12)
+set(gca,'fontsize',12)
+xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14),
 
-for i=1:length(Nvec)-1     % computating convergence order
-   order(i)=-log(Err(i)/Err(i+1))/(log(Nvec(i)/Nvec(i+1)));
+% add annotation of slope
+ax = [0.46 0.50];
+ay = [0.41 0.46];
+annotation('textarrow',ax,ay,'String','slope = -2 ','fontsize',14)
+
+% computating convergence order
+for i=1:length(Nvec)-1
+   order(i)=-log(Error(i)/Error(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end
-Err
+Error
 order
 
-
-print -dpng -r600  fdm2d1_error.png
+% print -dpng -r600  fdm2d1_error.png

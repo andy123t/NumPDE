@@ -24,9 +24,9 @@ for k=1:length(Nvec)
     Error=[Error,error];
 end
 plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
-hold on,
+hold on
 plot(log10(Nvec), log10(Nvec.^(-4)), '--')
-grid on,
+grid on
 %title('Convergence of Runge-Kutta Method','fontsize',12)
 set(gca,'fontsize',12)
 xlabel('log_{10}N','fontsize', 16), ylabel('log_{10}Error','fontsize',16)

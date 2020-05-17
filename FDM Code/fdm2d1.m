@@ -5,7 +5,7 @@
 % exact solution: ue=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)
 clear all;  clf
 % generate coordinates on the grid
-h=0.01;
+h=0.02;
 x=[0:h:1]';
 y=[0:h:1]';
 N=length(x)-1;
@@ -30,9 +30,10 @@ ue(2:M,2:N)=exp(pi*X+pi*Y).*sin(pi*X).*sin(pi*Y);
 % compute maximum error
 Error=max(max(abs(u-ue)))
 mesh(x,y,u)
-xlabel('x','fontsize', 16), ylabel('y','fontsize',16), zlabel('u','fontsize',16,'Rotation',0)
-title('Finite Difference Method','fontsize',14)
-set(gca,'fontsize',14)
+%title('Finite Difference Method','fontsize',14)
+set(gca,'fontsize',12)
+xlabel('x','fontsize', 16)
+ylabel('y','fontsize',16)
+zlabel('u','fontsize',16,'Rotation',0)
 
-
-print -dpng -r600  fdm2d1.png
+% print -dpng -r600  fdm2d1.png

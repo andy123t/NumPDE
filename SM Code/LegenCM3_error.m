@@ -5,7 +5,7 @@
 % Rmk: Use routines legslb(); legslbdiff(); 
 clear all;  clf
 Nvec=4:18;
-Errv=[]; condnv=[];
+L2_Error=[]; condnv=[];
 for N=Nvec
     xv=legslb(N);              % compute LGL nodes and weights
     yv=1/2*(xv+1);            % variable substitution
@@ -20,14 +20,20 @@ for N=Nvec
     b=[1; f(2:N-1); 0];         % RHS
     un=D\b;                      % Solve the system 
     
-    error=norm(abs(un-u),2);   % L^2 error
-    Errv=[Errv;error];
+    L2_error=norm(abs(un-u),2);   % L^2 error
+    L2_Error=[L2_Error;L2_error];
     condnv=[condnv,cond(D)];
 end
 % Plot the L^2 error 
-plot(Nvec,log10(Errv),'s-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',1.5)
-grid on, xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14),
-title('L^2 error of Legendre-collocation method','fontsize',12)
+plot(Nvec,log10(L2_Error),'m s-','MarkerFaceColor','w','LineWidth',1)
+%title('L^2 error of Legendre-collocation method','fontsize',12)
+set(gca,'fontsize',12)
+grid on, xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
 
+% sets axis tick and axis limits
+xticks(2:2:18)
+yticks(-16:2:0)
+xlim([2 18])
+ylim([-16 0])
 
-print -dpng -r600  LegenCM3_error.png
+% print -dpng -r600  LegenCM3_error.png

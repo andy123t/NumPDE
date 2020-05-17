@@ -13,12 +13,11 @@ b=pi^2*x(2:N).*sin(pi*x(2:N))+pi*(x(2:N)-1).*cos(pi*x(2:N));
 u=A\b';
 u=[0;u;0];
 ue=sin(pi*x');
-plot(x,ue,'b-',x,u,'r+','LineWidth',1.5)
+plot(x,ue,'b-',x,u,'r+','LineWidth',1)
 Error=max(abs(u-ue))
-xlabel('x','fontsize', 16), ylabel('y','fontsize',16,'Rotation',0)
-legend('Exact ','Numerical','location','North')
-title('Finite Difference Method','fontsize',14)
-set(gca,'fontsize',14)
+legend('Exact ','Numerical','location','NorthEast')
+%title('Finite Difference Method','fontsize',12)
+set(gca,'fontsize',12)
+xlabel('x','fontsize', 16), ylabel('u','fontsize',16,'Rotation',0)
 
-
-print -dpng -r600  fdm1d2.png
+% print -dpng -r600  fdm1d2.png

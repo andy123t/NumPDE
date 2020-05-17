@@ -21,18 +21,24 @@ for k=1:length(Nvec)
     error=max(abs(u-ue));
     Error=[Error,error];
 end
-plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1.5)
-hold on,
+plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
+hold on
 plot(log10(Nvec), log10(Nvec.^(-2)), '--')
-grid on,
-xlabel('log_{10}N','fontsize', 16), ylabel('log_{10}Error','fontsize',16),
-title('Convergence of Finite Difference Method','fontsize',14)
-set(gca,'fontsize',14)
-for i=1:length(Nvec)-1     % computating convergence order
+grid on
+%title('Convergence of Finite Difference Method','fontsize',12)
+set(gca,'fontsize',12)
+xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14),
+
+% add annotation of slope
+ax = [0.55 0.52];
+ay = [0.67 0.62];
+annotation('textarrow',ax,ay,'String','slope = -2 ','fontsize',14)
+
+% computating convergence order
+for i=1:length(Nvec)-1
     order(i)=-log(Error(i)/Error(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end
 Error   
 order
 
-
-print -dpng -r600  fdm1d1_error.png
+% print -dpng -r600  fdm1d1_error.png

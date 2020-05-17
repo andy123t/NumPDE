@@ -3,8 +3,7 @@
 % -u_xx+u=f in [0,1] with  boundary condition u(0)=u(1)=0;
 % exact solution: u=x*(1-x)*sin(x);
 % right hand function: f=(4*x-2).*cos(x)+(2+2*x-2*x^2).*sin(x)
-% Code from teacher Yi Lijun
-
+% Modified from Yi Lijun's program
 clear all;  clf
 Num=[16 32 64 128 256 512]
 node_Err=[];   L2_Err=[];  H1_Err=[];  DOF=[];
@@ -55,16 +54,16 @@ for j=1:length(Num)
     doff=N+1;    % degrees of freedom, number of unknowns
     DOF=[DOF, doff];
 end
-loglog(DOF,node_Err,'r+-','LineWidth',1.5)
+loglog(DOF,node_Err,'r+-','LineWidth',1)
 hold on
-loglog(DOF,L2_Err,'bo-','MarkerFaceColor','w','LineWidth',1.5)
+loglog(DOF,L2_Err,'bo-','MarkerFaceColor','w','LineWidth',1)
 hold on
-loglog(DOF,H1_Err,'b*-','LineWidth',1.5)
+loglog(DOF,H1_Err,'b*-','LineWidth',1)
 hold on
 grid on
-xlabel('log_{10}N','fontsize', 16), ylabel('log_{10}Error','fontsize',16),
-title('Convergence of Finite Difference Method','fontsize',14)
-set(gca,'fontsize',14)
+%title('Convergence of Finite Difference Method','fontsize',14)
+set(gca,'fontsize',12)
+xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
 
 for i=1:length(Num)-1    % calculating of convergence order
     node_order(i)=log(node_Err(i)/node_Err(i+1))/(log(DOF(i)/DOF(i+1)));
@@ -75,5 +74,4 @@ node_order
 L2_order
 H1_order
 
-
-print -dpng -r600  FEM1DP.png
+% print -dpng -r600  FEM1DP.png

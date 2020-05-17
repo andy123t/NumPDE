@@ -23,10 +23,10 @@ for k=1:length(Nvec)
 end
 plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
 %loglog(Nvec,Error,'ro-','LineWidth',1.5)
-hold on,
+hold on
 %loglog(Nvec, Nvec.^(-2), '--')
 plot(log10(Nvec), log10(Nvec.^(-2)), '--')
-grid on,
+grid on
 %title('Convergence of Trapezoidal rule','fontsize',12)
 set(gca,'fontsize',12)
 xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
