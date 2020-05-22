@@ -1,5 +1,5 @@
 % BackEuler2.m
-% Backward Euler Method for Nolinear ODE:
+% Backward Euler Method for Nonlinear ODE:
 % u'(t)=-100*u^3+sin(u) in [0,1]
 % Initial condition: u(0)=1.
 clear all

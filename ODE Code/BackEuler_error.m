@@ -1,5 +1,5 @@
 % BackEuler_error.m
-% Backward Euler Method for Nolinear ODE:
+% Backward Euler Method for Nonlinear ODE:
 % u'(x)=u-2x/u in [0,1]
 % Initial condition: u(0)=1;
 % Exact solution: u=sqrt(2*x+1)
