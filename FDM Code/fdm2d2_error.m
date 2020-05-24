@@ -6,7 +6,7 @@
 % exact solution: ue=(9+pi^2)^(-1)*cos(3*x)*sin(pi*y)
 clear all; close all; clf
 Nvec=2.^[2:7];
-MErr=[];
+Error=[];
 for N=Nvec
     % coordinates on the grid
     h1=pi/N;  h2=1/N;
@@ -32,10 +32,10 @@ for N=Nvec
     u(:,1)=u(:,2); 
     u(:,end)=u(:,end-1);
     ue=1/(9+pi^2)*(cos(3*X)).*(sin(pi*Y));
-    Merr=max(max(abs(u-ue)));   %maximum error
-    MErr=[MErr,Merr];
+    error=max(max(abs(u-ue)));   %maximum error
+    Error=[Error,error];
 end
-plot(log10(Nvec),log10(MErr),'ro-','MarkerFaceColor','w','LineWidth',1)
+plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
 hold on,
 plot(log10(Nvec), log10(Nvec.^(-1)), '--')
 grid on,
@@ -50,8 +50,9 @@ annotation('textarrow',ax,ay,'String','slope = -1 ','fontsize',14)
 
 % computating convergence order
 for i=1:length(Nvec)-1
-    order(i)=log(MErr(i)/MErr(i+1))/(log(Nvec(i)/Nvec(i+1)));
+    order(i)=-log(Error(i)/Error(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end
+Error
 order
 
 % print -dpng -r600  fdm2d2_error.png
