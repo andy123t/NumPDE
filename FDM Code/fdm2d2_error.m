@@ -32,13 +32,13 @@ for N=Nvec
     u(:,1)=u(:,2); 
     u(:,end)=u(:,end-1);
     ue=1/(9+pi^2)*(cos(3*X)).*(sin(pi*Y));
-    error=max(max(abs(u-ue)));   %maximum error
+    error=max(max(abs(u-ue)));   % maximum error
     Error=[Error,error];
 end
 plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
-hold on,
+hold on
 plot(log10(Nvec), log10(Nvec.^(-1)), '--')
-grid on,
+grid on
 %title('Convergence of Finite Difference Method','fontsize',14)
 set(gca,'fontsize',14)
 xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14),
