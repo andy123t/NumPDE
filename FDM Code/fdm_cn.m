@@ -2,7 +2,7 @@
 % Crank-Nicolson scheme for heat equation
 % u_t=u_{xx}+f(x,t), (x,t) in (0,1)x(0,1],
 % u(x,0)=sin(x), x in [0,1],
-% u(0,t)=sin(t), u(1,t)=sin(1+t), t in (0,1]
+% u(0,t)=sin(t), u(1,t)=sin(1+t), t in (0,1].
 % f(x,t)=cos(x+t)+sin(x+t),
 % exact solution: u(x,t)=sin(x+t)
 clear all; close all;
