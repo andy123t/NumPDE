@@ -1,4 +1,4 @@
-% LGM2_error.m
+% LegenSM2_error.m
 % Legendre-Galerkin Method for the model equation
 % -u''(x)+u'(x)+u(x)=f(x), x in (-1,1),
 % boundary condition: u(-1)=u(1)=0;

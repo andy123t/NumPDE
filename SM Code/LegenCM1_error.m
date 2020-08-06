@@ -1,13 +1,15 @@
+% LegenCM1_error.m
 % Legendre-collocation method for the model equation:
-% -u''(x)+\alpha u(x)=f(x), x in (-1,1);
+% -u''(x)+alpha*u(x)=f(x), x in (-1,1);
 % boundary condition: u(-1)=u(1)=0;
 % exact solution: u=sin(kw*pi*x);
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+alpha*sin(kw*pi*x);
 % Rmk: Use routines lepoly(); legslb(); legslbdm();
 clear all;  clf
 alpha=1;
-kw=10;
-Nvec=[32:2:76];
+kw=1;
+Nvec=[4:2:30];
+% Nvec=[32:2:76];  % kw=10
 % Initialization for error
 L2_Error=[];
 Max_Error=[];
@@ -36,14 +38,14 @@ hold on
 plot(Nvec,log10(Max_Error),'md-','MarkerFaceColor','w','LineWidth',1)
 grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
-%title('L^{2} error of Legendre-collocation method','fontsize',12)
+%title('Error of Legendre-collocation method','fontsize',12)
 set(gca,'fontsize',12)
 xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
 
 % sets axis tick and axis limits
-xticks(30:10:80)
-yticks(-15:3:0)
-xlim([30 80])
-ylim([-15 0])
+xticks(0:5:30)
+yticks(-16:2:0)
+xlim([0 30])
+ylim([-16 0])
 
 % print -dpng -r600  LegenCM1_error.png

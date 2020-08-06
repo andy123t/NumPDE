@@ -1,3 +1,4 @@
+% LegenSM3_error.m
 % Legendre-Spectral Method for 1D elliptic problem
 % -u_yy+u=f in [0,1] with boundary condition: u(0)=1, u'(1)=0;
 % exact solution: u=(1-y)^2*exp(y);   RHS: f=(2-4*y)*exp(y);
