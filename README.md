@@ -3,4 +3,6 @@ MATLAB code for numerical methods in differential equations. Study notes on the 
 
 My major is computational mathematics about numerical methods in differential equations. I write some MATLAB code, including numerical methods of ODEs, finite difference methods, finite element methods and spectral methods.
 
+Code of spectral methods based on [Book](https://blogs.ntu.edu.sg/wanglilian/book/): *Spectral Methods: Algorithms, Analysis and Applications*.
+
 I upload some code to Github to force myself to write the program seriously. I will gradually update this repository.

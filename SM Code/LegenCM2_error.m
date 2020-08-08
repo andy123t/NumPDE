@@ -18,9 +18,10 @@ for N=Nvec
     u=sin(kw*pi*xv);            % test function
     f=kw*kw*pi^2*sin(kw*pi*xv)+nu*kw*pi*cos(kw*pi*xv)+mu*sin(kw*pi*xv);  % RHS
     % Setup and solve the collocation system
-    D1=legslbdm(N);   %1st order differentiation matrix
-    D2=D1*D1;            % 2nd order differentiation matrix
-    D=-D2(2:N-1,2:N-1)+nu*D1(2:N-1,2:N-1)+mu*eye(N-2);    % coefficient matrix
+    D1=legslbdiff(N,xv);  % 1st order differentiation matrices
+    %D1=legslbdm(N);      % 1st order differentiation matrices
+    D2=D1*D1;             % 2nd order differentiation matrices
+    D=-D2(2:N-1,2:N-1)+nu*D1(2:N-1,2:N-1)+mu*eye(N-2);   % coefficient matrices
     b=f(2:N-1);   % RHS
     un=D\b;
     un=[0;un;0];  % Solve the system 
@@ -37,7 +38,7 @@ grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 set(gca,'fontsize',12)
 xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
-%title('Error of Legendre-collocation method','fontsize',12)
+%title('Convergence of Legendre-collocation method','fontsize',12)
 
 % sets axis tick and axis limits
 xticks(30:10:80)
