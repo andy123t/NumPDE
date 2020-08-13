@@ -1,5 +1,5 @@
 % ChebSM1_error.m
-% Chebyshev-Galerkin Method for for the model equation
+% Chebyshev-Galerkin Method for the model equation
 % -u_xx+u=f in (-1,1) with boundary condition u(-1)=u(1)=0;
 % exact solution: u=sin(kw*pi*x); 
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+sin(kw*pi*x); 
