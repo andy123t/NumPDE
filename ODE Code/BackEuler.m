@@ -29,3 +29,4 @@ set(gca,'fontsize',12)
 xlabel('t','fontsize', 16), ylabel('u','fontsize',16,'Rotation',0)
 % computing error
 error=max(abs(u-ue))
+

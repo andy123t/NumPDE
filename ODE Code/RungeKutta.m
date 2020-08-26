@@ -5,7 +5,7 @@
 % Exact solution: u(x)=-exp(-x)+x^2-x+1.
 clear all;  clf
 h=0.1;
-x=0:h:1;                     % function interval
+x=0:h:1;                     % interval division
 N=length(x)-1;
 u(1)=0;                      % initial value
 fun=@(x,u) x.^2+x-u;         % RHS
@@ -18,8 +18,7 @@ for n=1:N
 end
 ue=-exp(-x)+x.^2-x+1;        % exact solution
 plot(x,ue,'b-',x,u,'r+','LineWidth',1)
-legend('Exact','Numerical','location','North')
-legend('Exact ','Numerical','location','North')
+legend('Exact','Numerical','location','northwest')
 % title('Runge-Kutta Method','fontsize',12)
 set(gca,'fontsize',12)
 xlabel('x','fontsize', 16), ylabel('u','fontsize',16,'Rotation',0)

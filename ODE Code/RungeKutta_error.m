@@ -4,13 +4,13 @@
 % Initial value : u(0)=0 ;
 % Exact solution : u(t)=-exp(-t)+t^2-t+1.
 clear all;  clf
-Nvec=[10 50 100 500 1000];        % Number of splits
+Nvec=[10 50 100 500 1000];        % Number of divisions
 Error=[];
 fun=@(t,u) t.^2+t-u;              % RHS
 for k=1:length(Nvec)
     N=Nvec(k);
     h=1/N;
-    x=0:h:1;                      % function interval
+    x=0:h:1;                      % interval division
     u(1)=0;                       % initial value
     for n=1:N
         k1=fun(x(n),u(n));

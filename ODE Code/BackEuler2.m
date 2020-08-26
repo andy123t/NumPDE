@@ -7,7 +7,7 @@ h=0.01;
 x=0:h:1;
 N=length(x)-1;
 u(1)=1;
-NI(N)=0;  % 记录迭代次数
+NI(N)=0;       % Record the number of iterations
 for n=1:N
     % Newton iteration
     X(1)=u(n); tol=1.0e-8;
