@@ -8,9 +8,9 @@
 % RHS:  F=-2*x*exp(1/2*x+1/2)-1.
 clear all;  clf
 Nvec=3:18;  
-L2_Error=[];  condnv=[];             % Initialization for error and condition number
+L2_Error=[];  condnv=[];         % Initialization for error and condition number
 for N=Nvec
-    [xv,wv]=legs(N+1);           % Legendre-Gauss points and weights
+    [xv,wv]=legs(N+1);           % Legendre-Gauss nodes and weights
     Lm=lepolym(N,xv);            % Lm is a Legendre polynomal matrix 
     yv=1/2*(xv+1);               % variable substitution 
     U=(1-yv).^2.*exp(yv)-1;      % test function
