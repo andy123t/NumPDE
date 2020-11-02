@@ -7,25 +7,25 @@
 clear all;  clf
 kw=10;
 Nvec=[32:2:76];
-% Initialization for error
-L2_Error=[];
-Max_Error=[];
+
+L2_Error=[]; Max_Error=[];    % initialization error
+
 for N=Nvec
-    [xv,wv]=legs(N+1);         % Legendre-Gauss nodes and weights
-    Lm=lepolym(N,xv);          % matrix of Legendre polynomals
-    u=sin(kw*pi*xv);           % test function
+    [xv,wv]=legs(N+1);        % Legendre-Gauss nodes and weights
+    Lm=lepolym(N,xv);         % matrix of Legendre polynomals
+    u=sin(kw*pi*xv);          % test function
     f=kw*kw*pi^2*sin(kw*pi*xv)+sin(kw*pi*xv);   % Right-hand-side(RHS)
     % Calculting coefficient matrix
-    S=eye(N-1);                % stiff matrix
+    S=eye(N-1);               % stiff matrix
     M=diag(1./(4*[0:N-2]+6))*diag(2./(2*[0:N-2]+1)+2./(2*[0:N-2]+5))...
         -diag(2./(sqrt(4*[0:N-4]+6).*sqrt(4*[0:N-4]+14).*(2*[0:N-4]+5)),2)...
         -diag(2./(sqrt(4*[2:N-2]-2).*sqrt(4*[2:N-2]+6).*(2*[2:N-2]+1)),-2);    % mass matrix
     A=S+M;
     % Solving the linear system
     Pm=diag(1./sqrt(4*[0:N-2]+6))*(Lm(1:end-2,:)-Lm(3:end,:));   % matrix of Phi(x)
-    b=Pm*diag(wv)*f;           % Solving RHS
-    uh=A\b;                    % expansion coefficients of u_N in terms of the basis
-    un=Pm'*uh;                 % compositing the numerical solution
+    b=Pm*diag(wv)*f;          % solving RHS
+    uh=A\b;                   % expansion coefficients of u_N(x)
+    un=Pm'*uh;                % compositing the numerical solution
     
     L2_error=norm(abs(un-u),2);     % L^2 error
     Max_error=norm(abs(un-u),inf);  % maximum pointwise error 
@@ -38,7 +38,7 @@ hold on
 plot(Nvec,log10(Max_Error),'md-','MarkerFaceColor','w','LineWidth',1)
 grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
-% title('L^2 error of Legendre-Galerkin methods','fontsize',12)
+% title('Error of Legendre-Galerkin methods','fontsize',12)
 set(gca,'fontsize',12)
 xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
 
