@@ -15,8 +15,8 @@ end
 ue=-exp(-x)+x.^2-x+1;          % exact solution
 plot(x,ue,'b-',x,u,'r+','LineWidth',1)
 legend('Exact','Numerical','location','northwest')
-%title('Euler method','fontsize',12)
+% title('Euler method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('x','fontsize', 16), ylabel('u','fontsize',16,'Rotation',0)
+xlabel('x','fontsize',16), ylabel('u','fontsize',16,'Rotation',0)
 
 % print -dpng -r600  Euler1.png

@@ -27,7 +27,7 @@ plot(log10(Nvec), log10(Nvec.^(-1)), '--')
 grid on
 %title('Convergence of Euler method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('log_{10}N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % add annotation of slope
 ax = [0.57 0.53];

@@ -15,7 +15,7 @@ u(1)=0;                        % initial value
 for n=1:N
     u(n+1)=(2-h)/(2+h).*u(n)+h/(2+h).*(x(n)^2+x(n)+x(n+1)^2+x(n+1));
 end
-    ue=-exp(-x)+x.^2-x+1;         % exact solution
+    ue=-exp(-x)+x.^2-x+1;      % exact solution
     error=max(abs(u-ue));
     Error=[Error,error];
 end
@@ -27,7 +27,7 @@ plot(log10(Nvec), log10(Nvec.^(-2)), '--')
 grid on
 %title('Convergence of Trapezoidal rule','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('log_{10}N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % add annotation of slope
 ax = [0.63 0.58];

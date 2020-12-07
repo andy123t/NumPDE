@@ -13,9 +13,8 @@ for n=1:length(Nvec)
     Y=[1;1];
     % Newton iteration
     for i=1:N
-        k=u(i);
-        tol=1;
-        while tol>1.0e-6
+        k=u(i);  tol=1;
+        while tol>1.0e-10
             X=Y;
             D=[1-0.25*h,-h*(0.25-(sqrt(3))/6);...
             -h*( 0.25+(sqrt(3))/6),1-h*0.25];    % Jacobian matrix
@@ -34,9 +33,9 @@ plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
 hold on,
 plot(log10(Nvec), log10(Nvec.^(-4)), '--')
 grid on,
-%title('Convergence order of Gauss method ','fontsize',12)
+% title('Convergence order of Gauss method ','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('log_{10}N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % add annotation of slope
 ax = [0.62 0.58];

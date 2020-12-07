@@ -13,16 +13,18 @@ h=1/N;
 x=0:h:1;
 N=length(x)-1;
 u(1)=1;
+NI(1,N)=0;  % Record the number of iterations
 for n=1:N
     % Newton iteration
-    X(1)=u(n); tol=1.0e-10;
-    for k=1:100
-        X(k+1)=X(k)-(X(k)-h*X(k)+2*h*x(n+1)/X(k)-u(n))./(1-h-2*h*x(n+1)/(X(k)^2));
-        if abs(X(k+1)-X(k))<tol
-            u(n+1)=X(k+1);
-            break
-        end
+    Xn=u(n);
+    Xp=Xn;
+    Xprev=0;
+    while abs(Xp-Xprev) > eps*abs(Xp)
+        Xprev=Xp;
+        Xp=Xp-(Xp-h*Xp+2*h*x(n+1)/Xp-u(n))./(1-h-2*h*x(n+1)/(Xp^2));
+        NI(n)=NI(n)+1;
     end
+    u(n+1)=Xp;
 end
 ue=sqrt(2*x+1);
 error=max(abs(u-ue));
@@ -34,7 +36,7 @@ plot(log10(Nvec), log10(Nvec.^(-1)), '--')
 grid on
 %title('Rate of Convergence','fontsize',12)
 set(gca,'fontsize',14)
-xlabel('log_{10}N','fontsize', 14),ylabel('log_{10}Error','fontsize', 14)
+xlabel('log_{10}N','fontsize',14),ylabel('log_{10}Error','fontsize',14)
 
 % add annotation of slope
 ax = [0.57 0.53];

@@ -1,4 +1,4 @@
-% EulerPro.m
+% ModiEuler.m
 % Modified Euler method for the ODE model
 % u'(x)=x^2+x-u, x in [0,1] 
 % Initial condition: u(0)=0 ;
@@ -19,6 +19,6 @@ plot(x,ue,'b-',x,u,'r+','LineWidth',1)
 legend('Exact','Numerical','location','northwest')
 %title('Modified Euler Method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('x','fontsize', 16), ylabel('u','fontsize',16,'Rotation',0)
+xlabel('x','fontsize',16), ylabel('u','fontsize',16,'Rotation',0)
 
-% print -dpng -r600  EulerPro.png
+% print -dpng -r600  ModiEuler.png
