@@ -5,13 +5,13 @@
 % exact solution: u=sin(kw*pi*x);
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+alpha*sin(kw*pi*x);
 % Rmk: Use routines lepoly(); legslb(); legslbdm();
-clear all;  clf
+clear, clf
 alp=1;
 kw=1;
-Nvec=[4:2:30];
+Nvec=4:2:30;
 % Nvec=[32:2:76];  % kw=10
 % Initialization for error
-L2_Error=[];  Max_Error=[];
+L2_Err=[];  Max_Err=[];
 for N=Nvec
     [xv,wv]=legslb(N);          % compute LGL nodes and weights
     u=sin(kw*pi*xv);           % test solution
@@ -28,13 +28,13 @@ for N=Nvec
     
     L2_error=sqrt(((un-u).^2)'*wv);  % L^2 error
     Max_error=norm(abs(un-u),inf);  % maximum pointwise error 
-    L2_Error=[L2_Error;L2_error];
-    Max_Error=[Max_Error;Max_error];
+    L2_Err=[L2_Err;L2_error];
+    Max_Err=[Max_Err;Max_error];
 end
 % Plot L^2 and maximum pointwise error
-plot(Nvec,log10(L2_Error),'bo-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(L2_Err),'bo-','MarkerFaceColor','w','LineWidth',1)
 hold on
-plot(Nvec,log10(Max_Error),'rd-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(Max_Err),'rd-','MarkerFaceColor','w','LineWidth',1)
 grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 %title('Convergence of Legendre-collocation method','fontsize',12)

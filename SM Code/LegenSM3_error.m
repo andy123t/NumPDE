@@ -9,7 +9,7 @@
 clear all;  clf
 Nvec=3:18;
 % Initialization error and condition number
-L2_Error=[];  condnv=[];
+L2_Err=[];  condnv=[];
 for N=Nvec
     [xv,wv]=legs(N+1);           % Legendre-Gauss nodes and weights
     Lm=lepolym(N,xv);            % matrix of Legendre polynomals
@@ -35,11 +35,11 @@ for N=Nvec
     Un=Pm'*Uh;               % compositing the numerical solution
     
     L2_error=sqrt(((Un-U).^2)'*wv);   % L^2 error 
-    L2_Error=[L2_Error;L2_error];
+    L2_Err=[L2_Err;L2_error];
     condnv=[condnv,cond(A)];      % condition number of A
 end
 % Plot L^2 error
-plot(Nvec,log10(L2_Error),'bo-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(L2_Err),'bo-','MarkerFaceColor','w','LineWidth',1)
 grid on
 %title('L^2 error of Legendre-Galerkin method','fontsize',12)
 set(gca,'fontsize',12)
