@@ -8,11 +8,11 @@ clear all
 kw=10;
 Nvec=[32:2:76];
 % Initialization for error
-L2_Error=[];
-Max_Error=[];
+L2_Error=[];  Max_Error=[];
+
 for N=Nvec
     [xv,wv]=jags(N+1,-1/2,-1/2);               % Chebyshev-Gauss points and weights
-    Cm=japolym(N,-1/2,-1/2,xv)./japolym(N,-1/2,-1/2,1);   % matrix of Chebyshev polynomal    
+    Cm=japolym(N,-1/2,-1/2,xv)./japolym(N,-1/2,-1/2,1);  % matrix of Chebyshev polynomal    
     u=sin(kw*pi*xv);                           % test function
     f=kw*kw*pi^2*sin(kw*pi*xv)+sin(kw*pi*xv);  % RHS of test function
     % Calculting coefficient matrix
@@ -29,21 +29,21 @@ for N=Nvec
         +diag(-pi/2*ones(1,N-3),-2);    % mass matrix
     A=S+M;
     
-    % RHS calculative matrix
-    Pm=Cm(1:end-2,:)-Cm(3:end,:);
+    % Solving the linear system
+    Pm=Cm(1:end-2,:)-Cm(3:end,:);   % matrix of Phi(x)
     b=Pm*diag(wv)*f;          % Solving RHS
     uh=A\b;                   % expansion coefficients of u_N in terms of the basis
     un=Pm'*uh;                % compositing the numerical solution
     
-    L2_error=norm(abs(un-u),2);     % L^2 error
-    Max_error=norm(abs(un-u),inf);  % maximum pointwise error 
+    L2_error=sqrt(((un-u).^2)'*wv);  % L^2 error
+    Max_error=norm(abs(un-u),inf);   % maximum pointwise error 
     L2_Error=[L2_Error;L2_error];
     Max_Error=[Max_Error;Max_error];
 end
 % Plot L^2 and maximum pointwise error
-plot(Nvec,log10(L2_Error),'ro-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(L2_Error),'bo-','MarkerFaceColor','w','LineWidth',1)
 hold on
-plot(Nvec,log10(Max_Error),'md-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(Max_Error),'rd-','MarkerFaceColor','w','LineWidth',1)
 grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 % title('L^2 error of Chebyshev-Galerkin methods','fontsize',12)

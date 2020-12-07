@@ -25,7 +25,7 @@ for k=1:length(Nvec)
 end
 plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
 hold on
-plot(log10(Nvec), log10(Nvec.^(-4)), '--')
+plot(log10(Nvec),log10(Nvec.^(-4)), '--')
 grid on
 %title('Convergence of Runge-Kutta Method','fontsize',12)
 set(gca,'fontsize',12)

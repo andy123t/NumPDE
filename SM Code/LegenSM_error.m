@@ -25,10 +25,10 @@ for N=Nvec
     uh=A\b;                        % expansion coefficients of u_N(x)
     un=Pm'*uh;                     % compositing the numerical solution
     
+    L2_error=sqrt(((un-u).^2)'*wv);    % L^2 error
     Max_error=max(abs(un-u));      % maximum pointwise error
-    L2_error=norm(abs(un-u),2);    % L^2 error
-    Max_Error=[Max_Error;Max_error];
     L2_Error=[L2_Error;L2_error];
+    Max_Error=[Max_Error;Max_error];
 end
 % Plot the L^2 and maximum pointwise error
 plot(Nvec,log10(L2_Error),'bo-','MarkerFaceColor','w','LineWidth',1)

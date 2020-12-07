@@ -7,8 +7,9 @@
 % exact solution: U=(1/2-1/2*x)^2*exp(1/2*x+1/2)-1;
 % RHS:  F=-2*x*exp(1/2*x+1/2)-1.
 clear all;  clf
-Nvec=3:18;  
-L2_Error=[];  condnv=[];   % initialization error and condition number
+Nvec=3:18;
+% Initialization error and condition number
+L2_Error=[];  condnv=[];
 for N=Nvec
     [xv,wv]=legs(N+1);           % Legendre-Gauss nodes and weights
     Lm=lepolym(N,xv);            % matrix of Legendre polynomals
@@ -27,17 +28,18 @@ for N=Nvec
     A=4*S+M;
     
     % Solving the linear system
-    Pm=(Lm(1:end-2,:)+diag((2*e1+3)./(e1+2).^2)*Lm(2:end-1,:)-diag((e1+1).^2./(e1+2).^2)*Lm(3:end,:));
+    Pm=(Lm(1:end-2,:)+diag((2*e1+3)./(e1+2).^2)...
+        *Lm(2:end-1,:)-diag((e1+1).^2./(e1+2).^2)*Lm(3:end,:));
     b=Pm*diag(wv)*F;         % solving RHS
     Uh=A\b;                  % expansion coefficients of u_N(x)
     Un=Pm'*Uh;               % compositing the numerical solution
     
-    L2_error=norm(abs(Un-U),2);   % L^2 error 
+    L2_error=sqrt(((Un-U).^2)'*wv);   % L^2 error 
     L2_Error=[L2_Error;L2_error];
     condnv=[condnv,cond(A)];      % condition number of A
 end
 % Plot L^2 error
-plot(Nvec,log10(L2_Error),'s-','color',[0 0.5 0],'MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(L2_Error),'bo-','MarkerFaceColor','w','LineWidth',1)
 grid on
 %title('L^2 error of Legendre-Galerkin method','fontsize',12)
 set(gca,'fontsize',12)

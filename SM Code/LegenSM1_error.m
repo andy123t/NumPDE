@@ -7,8 +7,8 @@
 clear all;  clf
 kw=10;
 Nvec=[32:2:76];
-
-L2_Error=[]; Max_Error=[];    % initialization error
+% Initialization for error
+L2_Error=[]; Max_Error=[];    
 
 for N=Nvec
     [xv,wv]=legs(N+1);        % Legendre-Gauss nodes and weights
@@ -22,20 +22,20 @@ for N=Nvec
         -diag(2./(sqrt(4*[2:N-2]-2).*sqrt(4*[2:N-2]+6).*(2*[2:N-2]+1)),-2);    % mass matrix
     A=S+M;
     % Solving the linear system
-    Pm=diag(1./sqrt(4*[0:N-2]+6))*(Lm(1:end-2,:)-Lm(3:end,:));   % matrix of Phi(x)
+    Pm=diag(1./sqrt(4*[0:N-2]+6))*(Lm(1:end-2,:)-Lm(3:end,:));  % matrix of Phi(x)
     b=Pm*diag(wv)*f;          % solving RHS
     uh=A\b;                   % expansion coefficients of u_N(x)
     un=Pm'*uh;                % compositing the numerical solution
     
-    L2_error=norm(abs(un-u),2);     % L^2 error
-    Max_error=norm(abs(un-u),inf);  % maximum pointwise error 
+    L2_error=sqrt(((un-u).^2)'*wv);  % L^2 error
+    Max_error=norm(abs(un-u),inf);   % maximum pointwise error 
     L2_Error=[L2_Error;L2_error];
     Max_Error=[Max_Error;Max_error];
 end
 % Plot L^2 and maximum pointwise error
-plot(Nvec,log10(L2_Error),'ro-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(L2_Error),'bo-','MarkerFaceColor','w','LineWidth',1)
 hold on
-plot(Nvec,log10(Max_Error),'md-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(Max_Error),'rd-','MarkerFaceColor','w','LineWidth',1)
 grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 % title('Error of Legendre-Galerkin methods','fontsize',12)

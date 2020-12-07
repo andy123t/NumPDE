@@ -6,36 +6,35 @@
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+alpha*sin(kw*pi*x);
 % Rmk: Use routines lepoly(); legslb(); legslbdm();
 clear all;  clf
-alpha=1;
+alp=1;
 kw=1;
 Nvec=[4:2:30];
 % Nvec=[32:2:76];  % kw=10
 % Initialization for error
-L2_Error=[];
-Max_Error=[];
+L2_Error=[];  Max_Error=[];
 for N=Nvec
-    [x,w]=legslb(N);          % compute LGL nodes and weights
-    u=sin(kw*pi*x);           % test solution
-    udprime=-kw*kw*pi*pi*sin(kw*pi*x);
-    f=-udprime+alpha*u;       % RHS
+    [xv,wv]=legslb(N);          % compute LGL nodes and weights
+    u=sin(kw*pi*xv);           % test solution
+    udprime=-kw*kw*pi*pi*sin(kw*pi*xv);
+    f=-udprime+alp*u;       % RHS
     % Setup and solve the collocation system
     D1=legslbdm(N);           % 1st order differentiation matrices
     %D1=legslbdiff(N,x);      % 1st order differentiation matrices
     D2=D1*D1;                 % 2nd order differentiation matrices
-    D=(-D2(2:N-1,2:N-1)+alpha*eye(N-2)); % coefficient matrix
+    D=(-D2(2:N-1,2:N-1)+alp*eye(N-2)); % coefficient matrix
     b=f(2:N-1);               % RHS
     un=D\b;
     un=[0;un;0];              % Solve the system
     
-    L2_error=norm(abs(un-u),2);     % L^2 error
+    L2_error=sqrt(((un-u).^2)'*wv);  % L^2 error
     Max_error=norm(abs(un-u),inf);  % maximum pointwise error 
     L2_Error=[L2_Error;L2_error];
     Max_Error=[Max_Error;Max_error];
 end
 % Plot L^2 and maximum pointwise error
-plot(Nvec,log10(L2_Error),'ro-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(L2_Error),'bo-','MarkerFaceColor','w','LineWidth',1)
 hold on
-plot(Nvec,log10(Max_Error),'md-','MarkerFaceColor','w','LineWidth',1)
+plot(Nvec,log10(Max_Error),'rd-','MarkerFaceColor','w','LineWidth',1)
 grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 %title('Convergence of Legendre-collocation method','fontsize',12)
