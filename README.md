@@ -1,8 +1,7 @@
-# MATLAB-Code
-MATLAB code for numerical methods in differential equations. Study notes on the [weblog](https://andy123t.github.io/).
+# Numercial Methods for Partial Differential Equations
 
-My major is computational mathematics about numerical methods in differential equations. I write some MATLAB code, including numerical methods of ODEs, finite difference methods, finite element methods and spectral methods.
+MATLAB code for numerical methods in differential equations. Related notes on the [weblog](https://andy123t.github.io/).
 
-Code of spectral methods based on [Book](https://blogs.ntu.edu.sg/wanglilian/book/): *Spectral Methods: Algorithms, Analysis and Applications*.
+Numerical methods include numerical methods of ODEs, finite difference methods, finite element methods and spectral methods.
 
-I upload some code to Github to force myself to write the program seriously. I will gradually update this repository.
+Code for spectral methods based on Book: [Spectral Methods: Algorithms, Analysis and Applications](https://blogs.ntu.edu.sg/wanglilian/book/).
