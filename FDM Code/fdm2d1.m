@@ -3,7 +3,7 @@
 % -d^2u/dx^2-d^2u/dy^2=f(x,y)
 % f(x,y)=-2*pi^2*exp(pi*(x+y))*(sin(pi*x)*cos(pi*y)+cos(pi*x)*sin(pi*y))
 % exact solution: ue=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)
-clear all;  clf
+clear all; close all;
 % generate coordinates on the grid
 h=0.02;
 x=[0:h:1]';
@@ -34,6 +34,7 @@ mesh(x,y,u)
 set(gca,'fontsize',12)
 xlabel('x','fontsize', 16)
 ylabel('y','fontsize',16)
-zlabel('u','fontsize',16,'Rotation',0)
+zlabel('u','fontsize',16)
 
-% print -dpng -r600  fdm2d1.png
+% print -dpng -r600 fdm2d1.png
+% print -depsc2 fdm2d1.eps

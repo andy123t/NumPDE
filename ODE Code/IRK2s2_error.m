@@ -2,7 +2,7 @@
 % Implicit Runge-Kutta(Gauss method) 2 stage and order 4
 % u'=u^2/2-1/2 in [0,1] with initial condition u(0)=0
 % exact solution: ue=(1-exp(x))/(1+exp(x))
-clear all;  close all;  clf
+clear all; close all;
 Nvec=[10 50 100 200 500];
 Error=[];
 for n=1:length(Nvec)
@@ -49,4 +49,5 @@ end
 Error
 order
 
-% print -dpng -r600  IRK2s2_error.png
+% print -dpng -r600 IRK2s2_error.png
+% print -depsc2 IRK2s2_error.eps

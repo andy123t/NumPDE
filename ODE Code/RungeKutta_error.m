@@ -3,8 +3,8 @@
 % u'(t)=t^2+t-u, t \in [0,2] 
 % Initial value : u(0)=0 ;
 % Exact solution : u(t)=-exp(-t)+t^2-t+1.
-clear all;  clf
-Nvec=[10 50 100 500 1000];        % Number of divisions
+clear all; close all;
+Nvec=[10 50 100 500 1000];        % Number of partitions
 Error=[];
 fun=@(t,u) t.^2+t-u;              % RHS
 for k=1:length(Nvec)
@@ -43,4 +43,5 @@ end
 Error
 order
 
-% print -dpng -r600  RungeKutta_error.png
+% print -dpng -r600 RungeKutta_error.png
+% print -depsc2 RungeKutta_error.eps

@@ -1,20 +1,20 @@
 % FEM1D.m
-% Finite Element Method
-% -u_xx+u=f in (0,1) with boundary condition u(0)=u(1)=0;
-% exact : u=x*(1-x)*sin(x)
+% finite element method for 1D elliptic problem
+% -u_xx+u=f in (0,1)
+% boundary condition: u(0)=u(1)=0;
+% exact solution: u=x*(1-x)*sin(x)
 % RHS: f=(4*x-2).*cos(x)+(2+2*x-2*x^2).*sin(x);
-% Modified from Yi Lijun's program
-clear all;  clf
-Num=[16 32 64 128 256 512];    % Number of splits
+clear all; close all;
+Num=[16 32 64 128 256 512];  % Number of partitions
 Err=[];  DOF=[];
 for j=1:length(Num)
-    N=Num(j);    h=1/N;    x=0:h:1;
-    % The global node number corresponds to element local node number
+    N=Num(j);  h=1/N;  x=0:h:1;
+    % The global node number corresponds to the element local node number
     M=[1:N;2:N+1];
     [xv,wv]=jags(2,0,0); % nodes and weights of gauss quadrature
     
-    K=zeros(N+1);        %  global stiffness matrix
-    F=zeros(N+1,1);      %  RHS load vector
+    K=zeros(N+1);        % global stiffness matrix
+    F=zeros(N+1,1);      % RHS load vector
     for i=1:N   % loop for each element
         K(M(1,i),M(1,i))=K(M(1,i),M(1,i))+((h/2)*(((1/4)*(2/h)^2+((1-xv)/2).^2)))'*wv;
         K(M(1,i),M(2,i))=K(M(1,i),M(2,i))+((h/2)*((-1/4)*(2/h)^2+((1-xv)/2).*((1+xv)/2)))'*wv;
@@ -30,16 +30,16 @@ for j=1:length(Num)
     K(:,1)=zeros(1,N+1);
     K(N+1,: )=zeros(1,N+1);
     K(:, N+1)=zeros(1,N+1);
-    K(1,1)=1;   K(N+1,N+1)=1;
-    F(1)=0;     F(N+1)=0;
+    K(1,1)=1;  K(N+1,N+1)=1;
+    F(1)=0;    F(N+1)=0;
 
     U=K\F;     % numerical solution at the value of the node
-    error=max(abs(U'-x.*(1-x).*sin(x)));  % node error
+    err=max(abs(U'-x.*(1-x).*sin(x)));  % node error
     doff=N+1;  % degrees of freedom, number of unknowns
-    Err=[Err, error];
+    Err=[Err, err];
     DOF=[DOF, doff];
 end
-plot(log10(DOF),log10(Err),'ro-','MarkerFaceColor','w','LineWidth',1.5),
+plot(log10(DOF),log10(Err),'ro-','MarkerFaceColor','w','LineWidth',1),
 hold on
 plot(log10(DOF),log10(DOF.^(-2)),'--')
 grid on
@@ -47,4 +47,5 @@ grid on
 set(gca,'fontsize',14)
 xlabel('log_{10}N','fontsize',14), ylabel('log_{10}Error','fontsize',14),
 
-% print -dpng -r600  FEM1D.png
+% print -dpng -r600 FEM1D.png
+% print -depsc2 FEM1D.png

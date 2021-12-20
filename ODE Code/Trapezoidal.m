@@ -3,9 +3,9 @@
 % u'(x)=x^2+x-u, x in [0,1] 
 % Initial condition: u(0)=0 ;
 % Exact solution: u(x)=-exp(-x)+x^2-x+1.
-clear all;  clf
+clear all; close all;
 h=0.1;
-x=0:h:1;                       % interval division
+x=0:h:1;                       % interval partition
 N=length(x)-1;
 u(1)=0;                        % initial value
 for n=1:N
@@ -16,6 +16,7 @@ plot(x,ue,'b-',x,u,'r+','LineWidth',1)
 legend('Exact','Numerical','location','northwest')
 %title('Trapezoidal rule','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('x','fontsize',16), ylabel('u','fontsize',16,'Rotation',0)
+xlabel('x','fontsize',16), ylabel('u','fontsize',16)
 
-% print -dpng -r600  Trapezoidal.png
+% print -dpng -r600 Trapezoidal.png
+% print -depsc2 Trapezoidal.eps

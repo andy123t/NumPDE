@@ -3,7 +3,7 @@
 % u'(x)=u-2x/u in [0,1]
 % Initial condition: u(0)=1;
 % Exact solution: u=sqrt(2*x+1)
-clear all
+clear all; close all;
 Nvec=[10 20 100 200 1000];
 %hv=[0.1 0.05 0.01 0.005 0.001];
 Error=[];
@@ -50,4 +50,5 @@ end
 Error
 order
 
-% print -dpng -r600  BackEuler_error.png
+% print -dpng -r600 BackEuler_error.png
+% print -depsc2 BackEuler_error.eps

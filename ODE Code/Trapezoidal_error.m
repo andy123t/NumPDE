@@ -4,7 +4,7 @@
 % Initial condition: u(0)=0 ;
 % Exact solution: u(x)=-exp(-x)+x^2-x+1.
 clear all;  clf
-Nvec=[10 50 100 500 1000];     % Number of divisions
+Nvec=[10 50 100 500 1000];     % Number of partitions
 Error=[];
 for k=1:length(Nvec)
     N=Nvec(k);
@@ -41,4 +41,5 @@ end
 Error
 order
 
-% print -dpng -r600  Trapezoidal_error.png
+% print -dpng -r600 Trapezoidal_error.png
+% print -depsc2 Trapezoidal_error.eps

@@ -28,11 +28,12 @@ mesh(t(1:20:end),x,u(:,1:20:end))
 set(gca,'fontsize',12)
 xlabel('t','fontsize', 14) 
 ylabel('x','fontsize',14)
-zlabel('u','fontsize',14,'Rotation',0)
+zlabel('u','fontsize',14)
 
 % calculating maximum error
 [T X]=meshgrid(t,x);
 ue=exp(X+T);
 Error=max(max(abs(ue-u)))
 
-% print -dpng -r600  fdm_heat.png
+% print -dpng -r600 fdm_heat.png
+% print -depsc2 fdm_heat.eps

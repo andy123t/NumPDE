@@ -4,4 +4,4 @@ MATLAB code for numerical methods in differential equations. Related notes on th
 
 Numerical methods include numerical methods of ODEs, finite difference methods, finite element methods and spectral methods.
 
-Code for spectral methods based on Book: [Spectral Methods: Algorithms, Analysis and Applications](https://blogs.ntu.edu.sg/wanglilian/book/).
+Reference book of spectral method: [Spectral Methods: Algorithms, Analysis and Applications](https://blogs.ntu.edu.sg/wanglilian/book/).

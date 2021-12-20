@@ -3,7 +3,7 @@
 % -d^2u/dx^2-d^2u/dy^2=f(x,y)
 % f(x,y)=-2*pi^2*exp(pi*(x+y))*(sin(pi*x)*cos(pi*y)+cos(pi*x)*sin(pi*y))
 % exact solution: ue=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)
-clear all;  clf
+clear all; close all;
 Nvec=2.^[4:10];
 Error=[];
 for n=Nvec
@@ -55,4 +55,5 @@ end
 Error
 order
 
-% print -dpng -r600  fdm2d1_error.png
+% print -dpng -r600 fdm2d1_error.png
+% print -depsc2 fdm2d1_error.eps

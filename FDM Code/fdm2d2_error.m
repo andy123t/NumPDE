@@ -4,7 +4,7 @@
 % u(x,0)=u(x,1)=0  in [0,pi]
 % u_x(0,y)=u_x(pi,y)=0 in [0,1]
 % exact solution: ue=(9+pi^2)^(-1)*cos(3*x)*sin(pi*y)
-clear all; close all; clf
+clear all; close all;
 Nvec=2.^[2:7];
 Error=[];
 for N=Nvec
@@ -55,4 +55,5 @@ end
 Error
 order
 
-% print -dpng -r600  fdm2d2_error.png
+% print -dpng -r600 fdm2d2_error.png
+% print -depsc2 fdm2d2_error.eps

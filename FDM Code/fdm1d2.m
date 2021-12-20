@@ -3,7 +3,7 @@
 % -(xu')'+x*u'=pi^2*x*sin(pi*x)-pi*cos(pi*x)+pi*x*cos(pi*x) in [0,1]
 % u(0)=0, u(1)=0 ;
 % exact solution : u=sin(pi*x)
-clear all;  clf
+clear all; close all;
 h=0.05;
 x=0:h:1;
 N=length(x)-1;
@@ -18,6 +18,7 @@ Error=max(abs(u-ue))
 legend('Exact ','Numerical','location','NorthEast')
 %title('Finite Difference Method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('x','fontsize', 16), ylabel('u','fontsize',16,'Rotation',0)
+xlabel('x','fontsize', 16), ylabel('u','fontsize',16)
 
-% print -dpng -r600  fdm1d2.png
+% print -dpng -r600 fdm1d2.png
+% print -depsc2 fdm1d2.eps

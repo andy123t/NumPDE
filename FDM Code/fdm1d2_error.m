@@ -3,8 +3,8 @@
 % -(xu')'+x*u'=pi^2*x*sin(pi*x)-pi*cos(pi*x)+pi*x*cos(pi*x) in [0,1]
 % u(0)=0, u(1)=0 ;
 % exact solution : u=sin(pi*x)
-clear all;  clf
-Nvec=[10 20 50 100 200 500 1000];    % Number of splits
+clear all; close all;
+Nvec=[10 20 50 100 200 500 1000];    % Number of partitions
 Error=[];
 for k=1:length(Nvec)
     N=Nvec(k);
@@ -40,4 +40,5 @@ end
 Error
 order
 
-% print -dpng -r600  fdm1d2_error.png
+% print -dpng -r600 fdm1d2_error.png
+% print -depsc2 fdm1d2_error.eps

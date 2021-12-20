@@ -3,8 +3,8 @@
 % u'(x)=x^2+x-u, x in [0,1] 
 % Initial condition: u(0)=0 ;
 % Exact solution: u(x)=-exp(-x)+x^2-x+1.
-clear all;  clf
-Nvec=[10 50 100 500 1000];        % Number of divisions
+clear all; close all;
+Nvec=[10 50 100 500 1000];        % Number of partitions
 Error=[];
 fun=@(x,u) x.^2+x-u;              % RHS
 for k=1:length(Nvec)
@@ -41,4 +41,5 @@ end
 Error
 order
 
-% print -dpng -r600  Euler1_error.png
+% print -dpng -r600 Euler1_error.png
+% print -depsc2 Euler1_error.eps

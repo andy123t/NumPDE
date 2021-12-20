@@ -1,33 +1,34 @@
-% LegenCM1_error.m
+% LegenCM1.m
 % Legendre-collocation method for the model equation:
 % -u''(x)+alpha*u(x)=f(x), x in (-1,1);
 % boundary condition: u(-1)=u(1)=0;
 % exact solution: u=sin(kw*pi*x);
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+alpha*sin(kw*pi*x);
 % Rmk: Use routines lepoly(); legslb(); legslbdm();
-clear, clf
+clear all; close all;
 alp=1;
 kw=1;
 Nvec=4:2:30;
 % Nvec=[32:2:76];  % kw=10
 % Initialization for error
 L2_Err=[];  Max_Err=[];
+% Loop for various modes N to calculate numerical errors
 for N=Nvec
-    [xv,wv]=legslb(N);          % compute LGL nodes and weights
-    u=sin(kw*pi*xv);           % test solution
+    [xv,wv]=legslb(N);  % Legendre-Gauss-Lobatto points and weights
+    u=sin(kw*pi*xv);    % exact solution
     udprime=-kw*kw*pi*pi*sin(kw*pi*xv);
-    f=-udprime+alp*u;       % RHS
-    % Setup and solve the collocation system
-    D1=legslbdm(N);           % 1st order differentiation matrices
-    %D1=legslbdiff(N,x);      % 1st order differentiation matrices
-    D2=D1*D1;                 % 2nd order differentiation matrices
+    f=-udprime+alp*u;   % RHS
+    % Solve the collocation system
+    D1=legslbdm(N);           % 1st order differentiation matrix
+    %D1=legslbdiff(N,x);      % 1st order differentiation matrix
+    D2=D1*D1;                 % 2nd order differentiation matrix
     D=(-D2(2:N-1,2:N-1)+alp*eye(N-2)); % coefficient matrix
     b=f(2:N-1);               % RHS
     un=D\b;
-    un=[0;un;0];              % Solve the system
+    un=[0;un;0];
     
     L2_error=sqrt(((un-u).^2)'*wv);  % L^2 error
-    Max_error=norm(abs(un-u),inf);  % maximum pointwise error 
+    Max_error=norm(abs(un-u),inf);   % maximum pointwise error 
     L2_Err=[L2_Err;L2_error];
     Max_Err=[Max_Err;Max_error];
 end
@@ -47,4 +48,5 @@ yticks(-16:2:0)
 xlim([0 30])
 ylim([-16 0])
 
-% print -dpng -r600  LegenCM1_error.png
+% print -dpng -r600 LegenCM1.png
+% print -depsc2 LegenCM1.eps

@@ -30,10 +30,11 @@ mesh(t,x,u), view(20,40)
 set(gca,'fontsize',12)
 xlabel('t','fontsize', 14) 
 ylabel('x','fontsize',14)
-zlabel('u','fontsize',14,'Rotation',0)
+zlabel('u','fontsize',14)
 
 % calculating maximum error
 ue=sin(X.*T);
 Error=max(max(abs(ue-u)))
 
-% print -dpng -r600  fdm_wave.png
+% print -dpng -r600 fdm_wave.png
+% print -depsc2 fdm_wave.eps

@@ -1,9 +1,9 @@
 % FEM1a.m
-% Finite Element Method
-% -u_xx=-exp(x) in [0,1] 
-% u(0)=0, u'(1)=e;
+% finite element method for 1D problem
+% -u_xx=-exp(x) in (0,1)
+% boundary condition: u(0)=0, u'(1)=e;
 % exact solution: u=exp(x)-1.
-clear all;  clf
+clear all; close all;
 N=10;
 h=1/N;
 X=0:h:1;
@@ -41,3 +41,4 @@ set(gca,'fontsize',12)
 xlabel('x','fontsize', 14), ylabel('u','fontsize',14,'Rotation',0)
 
 % print -dpng -r600  FEM1a.png
+% print -depsc2 FEM1a.eps

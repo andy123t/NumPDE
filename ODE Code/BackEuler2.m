@@ -2,7 +2,7 @@
 % Backward Euler Method for Nonlinear ODE:
 % u'(t)=-100*u^3+sin(u) in [0,1]
 % Initial condition: u(0)=1.
-clear all
+clear all; close all;
 h=0.001;
 x=0:h:1;
 N=length(x)-1;
@@ -22,6 +22,7 @@ for n=1:N
 end
 plot(x,u,'r-.', 'LineWidth',1)
 set(gca,'fontsize',12)
-xlabel('t','fontsize',16), ylabel('u','fontsize',16,'Rotation',0)
+xlabel('t','fontsize',16), ylabel('u','fontsize',16)
 
-% print -dpng -r600  BackEuler2.png
+% print -dpng -r600 BackEuler2.png
+% print -depsc2 BackEuler2.eps

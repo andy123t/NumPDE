@@ -3,7 +3,7 @@
 % u'(x)=u-2x/u in [0,1]
 % Initial condition: u(0)=1;
 % Exact solution: u=sqrt(2*x+1)
-clear all
+clear all; close all;
 h=0.01;
 x=0:h:1;
 N=length(x)-1;
@@ -26,9 +26,10 @@ plot(x,ue,'b-',x,u,'r+','LineWidth',1)
 legend('Exact ','Numerical','location','northwest')
 % title('Backward Euler method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('t','fontsize',16), ylabel('u','fontsize',16,'Rotation',0)
+xlabel('t','fontsize',16), ylabel('u','fontsize',16)
 
 % computing error
 error=max(abs(u-ue))
 
-% print -dpng -r600  BackEuler.png
+% print -dpng -r600 BackEuler.png
+% print -depsc2 BackEuler.eps
