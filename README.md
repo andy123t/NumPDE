@@ -1,6 +1,6 @@
 # Numercial Methods for Partial Differential Equations
 
-微分方程数值解笔记: MATLAB 数值实现
+微分方程数值解笔记：MATLAB 数值实现
 
 MATLAB code of numerical methods for differential equations. Related notes on the [weblog](https://andy123t.github.io/).
 
