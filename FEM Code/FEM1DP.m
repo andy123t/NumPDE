@@ -7,16 +7,17 @@
 clear all; close all;
 Num=[16 32 64 128 256 512]
 node_Err=[];  L2_Err=[];  H1_Err=[];  DOF=[];
-for j=1:length(Num)
-    N=Num(j);  h=1/N;  x=0:h:1;
-    % The global node number corresponds to the element local node number
-    M=[1:N;2:N+1];
-    [xv,wv]=jags(3,0,0);   % nodes and weights of gauss quadrature
+for k=1:length(Num)
+    N=Num(k);  h=1/N;  x=0:h:1;
+    
+    M=[1:N;2:N+1];        % information matrix
+    % the global node indices of the mesh nodes of all the mesh elements
+    [xv,wv]=jags(3,0,0);  % nodes and weights of Gauss quadrature
 
-    K=zeros(N+1);          % global stiffness matrix
-    F=zeros(N+1,1);        % RHS load vector
+    K=zeros(N+1);         % global stiffness matrix
+    F=zeros(N+1,1);       % RHS load vector
 
-    for i=1:N              % loop for each element
+    for i=1:N             % loop for each element
         K(M(1,i),M(1,i))=K(M(1,i),M(1,i))+((h/2)*(((1/4)*(2/h)^2+((1-xv)/2).^2)))'*wv;
         K(M(1,i),M(2,i))=K(M(1,i),M(2,i))+((h/2)*((-1/4)*(2/h)^2+((1-xv)/2).*((1+xv)/2)))'*wv;
         K(M(2,i),M(1,i))=K(M(2,i),M(1,i))+((h/2)*((-1/4)*(2/h)^2+((1-xv)/2).*((1+xv)/2)))'*wv;
@@ -39,9 +40,9 @@ for j=1:length(Num)
     node_error=max(abs(U'-x.*(1-x).*sin(x)));  % node error
     for i=1:N
         tt=h*xv/2+(x(i+1)+x(i))/2;
-        % value of finite element solution at Gauss point
+        % value of finite element solution at Gauss nodes
         uh=U(i)*(1-xv)/2+U(i+1)*(1+xv)/2;
-        % derivative value of finite element solution at Gauss point
+        % derivative value of finite element solution at Gauss nodes
         duh=-U(i)/2+U(i+1)/2;
         L2_err(i)=h/2*((tt.*(1-tt).*sin(tt)-uh).^2)'*wv;
         % the square of the L2 error of the i-th interval
@@ -58,10 +59,11 @@ loglog(DOF,node_Err,'r+-','LineWidth',1)
 hold on
 loglog(DOF,L2_Err,'bo-','MarkerFaceColor','w','LineWidth',1)
 hold on
-loglog(DOF,H1_Err,'b*-','LineWidth',1)
+loglog(DOF,H1_Err,'m*-','LineWidth',1)
 hold on
 grid on
-%title('Convergence of Finite Element Method','fontsize',14)
+legend('L^2 error','L^{\infty} error','H^1 error','location','SouthWest')
+% title('Convergence of finite element method','fontsize',14)
 set(gca,'fontsize',12)
 xlabel('log_{10}N','fontsize', 14),
 ylabel('log_{10}Error','fontsize',14)
@@ -72,14 +74,15 @@ yticks(10.^(-8:-1))
 xlim([10 10^3])
 ylim([10^(-8) 10^(-1)])
 
-for i=1:length(Num)-1    % calculating of convergence order
-    node_order(i)=log(node_Err(i)/node_Err(i+1))/(log(DOF(i)/DOF(i+1)));
-    L2_order(i)=log(L2_Err(i)/L2_Err(i+1))/(log(DOF(i)/DOF(i+1)));
-    H1_order(i)=log(H1_Err(i)/H1_Err(i+1))/(log(DOF(i)/DOF(i+1)));
+% calculating of convergence order
+for k=1:length(Num)-1
+    node_order(k)=log(node_Err(k)/node_Err(k+1))/(log(DOF(k)/DOF(k+1)));
+    L2_order(k)=log(L2_Err(k)/L2_Err(k+1))/(log(DOF(k)/DOF(k+1)));
+    H1_order(k)=log(H1_Err(k)/H1_Err(k+1))/(log(DOF(k)/DOF(k+1)));
 end
 node_order
 L2_order
 H1_order
 
 % print -dpng -r600 FEM1DP.png
-% print -depsc2 FEM1DP.png
+% print -depsc2 FEM1DP.eps

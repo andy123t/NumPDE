@@ -9,7 +9,7 @@ clear all; close all;
 kw=1;
 Nvec=[4:2:28];
 L2_Err=[]; Max_Err=[];  % initialization error
-% Loop for various modes N to calculating numerical errors
+% Loop for various modes N to calculate numerical errors
 for N=Nvec
     [xv,wv]=legs(N+1);      % Legendre-Gauss points and weights
     Lm=lepolym(N,xv);       % matrix of Legendre polynomals
