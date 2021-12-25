@@ -1,7 +1,6 @@
 % LegenSM.m
 % Legendre spectral-Galerkin method for the model equation
-% -u_xx+u=f in (-1,1) 
-% boundary condition: u(-1)=u(1)=0;
+% -u_xx+u=f in (-1,1) with boundary condition: u(-1)=u(1)=0;
 % exact solution: u=sin(kw*pi*x);
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+sin(kw*pi*x);
 % Rmk: Use routines lepoly(); legs(); lepolym();
@@ -42,5 +41,5 @@ legend('L^2 error','L^{\infty} error')
 set(gca,'fontsize',12)
 xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
 
-% print -dpng -r600  LegenSM.png
+% print -dpng -r600 LegenSM.png
 % print -depsc2 LegenSM.eps
