@@ -46,7 +46,7 @@ plot(log10(DOF),log10(DOF.^(-2)),'--')
 grid on
 % title('Convergence of finite element method','fontsize',14)
 set(gca,'fontsize',14)
-xlabel('log_{10}N','fontsize',14), ylabel('log_{10}Error','fontsize',14),
+xlabel('log_{10}DOF','fontsize',14), ylabel('log_{10}Error','fontsize',14),
 
 % print -dpng -r600 FEM1D.png
 % print -depsc2 FEM1D.png

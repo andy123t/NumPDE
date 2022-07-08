@@ -5,7 +5,7 @@
 % exact solution: u=x*(1-x)*sin(x);
 % right hand function: f=(4*x-2).*cos(x)+(2+2*x-2*x^2).*sin(x)
 clear all; close all;
-Num=[16 32 64 128 256 512]
+Num=[16 32 64 128 256 512];  % Number of partitions
 node_Err=[];  L2_Err=[];  H1_Err=[];  DOF=[];
 for k=1:length(Num)
     N=Num(k);  h=1/N;  x=0:h:1;
@@ -64,9 +64,9 @@ hold on
 grid on
 legend('L^2 error','L^{\infty} error','H^1 error','location','SouthWest')
 % title('Convergence of finite element method','fontsize',14)
-set(gca,'fontsize',12)
-xlabel('log_{10}N','fontsize', 14),
-ylabel('log_{10}Error','fontsize',14)
+set(gca,'FontName','Times New Roman','FontSize',12)
+xlabel('Number of degrees of freedom','fontsize', 14),
+ylabel('Error','fontsize',14)
 
 % sets axis tick and axis limits
 xticks(10.^(1:3))
