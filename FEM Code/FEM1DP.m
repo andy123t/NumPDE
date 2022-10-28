@@ -12,7 +12,7 @@ for k=1:length(Num)
     
     M=[1:N;2:N+1];        % information matrix
     % the global node indices of the mesh nodes of all the mesh elements
-    [xv,wv]=jags(3,0,0);  % nodes and weights of Gauss quadrature
+    [xv,wv]=legs(3);      % nodes and weights of Gauss quadrature
 
     K=zeros(N+1);         % global stiffness matrix
     F=zeros(N+1,1);       % RHS load vector
@@ -65,7 +65,7 @@ grid on
 legend('L^2 error','L^{\infty} error','H^1 error','location','SouthWest')
 % title('Convergence of finite element method','fontsize',14)
 set(gca,'FontName','Times New Roman','FontSize',12)
-xlabel('Number of degrees of freedom','fontsize', 14),
+xlabel('Number of degrees of freedom','fontsize',14)
 ylabel('Error','fontsize',14)
 
 % sets axis tick and axis limits

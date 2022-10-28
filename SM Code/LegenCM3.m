@@ -29,9 +29,10 @@ for N=Nvec
 end
 % Plot the L^2 error 
 plot(Nvec,log10(L2_Err),'mo-','MarkerFaceColor','w','LineWidth',1)
+grid on
 % title('Convergence of Legendre-collocation method','fontsize',12)
 set(gca,'fontsize',12)
-grid on, xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % sets axis tick and axis limits
 xticks(2:2:18)

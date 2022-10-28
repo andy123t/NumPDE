@@ -10,15 +10,15 @@ N=length(x)-1;
 A=diag(2*x(2:N)./h^2)+diag(x(2:N-1)./(2*h)-(x(2:N-1)+0.5*h)./h^2,1)...
     +diag(-x(3:N)./(2*h)-(x(3:N)-0.5*h)./h^2,-1);
 b=pi^2*x(2:N).*sin(pi*x(2:N))+pi*(x(2:N)-1).*cos(pi*x(2:N));
-u=A\b';
-u=[0;u;0];
+un=A\b';
+un=[0;un;0];
 ue=sin(pi*x');
-plot(x,ue,'b-',x,u,'r+','LineWidth',1)
-Error=max(abs(u-ue))
-legend('Exact ','Numerical','location','NorthEast')
+plot(x,ue,'b-',x,un,'r+','LineWidth',1)
+Error=max(abs(un-ue))
+legend('Exact','Numerical','location','NorthEast')
 %title('Finite Difference Method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('x','fontsize', 16), ylabel('u','fontsize',16)
+xlabel('x','fontsize',16), ylabel('u','fontsize',16)
 
 % print -dpng -r600 fdm1d2.png
 % print -depsc2 fdm1d2.eps

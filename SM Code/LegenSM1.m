@@ -1,13 +1,12 @@
 % LegenSM1.m
 % Legendre spectral-Galerkin method for the model equation
-% -u_xx+u=f in (-1,1)
-% boundary condition: u(-1)=u(1)=0;
+% -u_xx+u=f in (-1,1) with boundary condition: u(-1)=u(1)=0;
 % exact solution: u=sin(kw*pi*x); 
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+sin(kw*pi*x); 
 % Rmk: Use routines lepoly(); legs(); lepolym();
 clear all; close all;
 kw=10;
-Nvec=[32:2:76];
+Nvec=32:2:76;
 % Initialization for error
 L2_Err=[]; Max_Err=[];    
 % Loop for various modes N to calculate numerical errors
@@ -40,7 +39,7 @@ plot(Nvec,log10(Max_Err),'rd-','MarkerFaceColor','w','LineWidth',1)
 grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 set(gca,'fontsize',12)
-xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % sets axis tick and axis limits
 xticks(30:10:80)

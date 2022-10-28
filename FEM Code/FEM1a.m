@@ -1,8 +1,8 @@
 % FEM1a.m
 % finite element method for 1D problem
-% -u_xx=-exp(x) in (0,1)
+% -u_{xx}=-exp(x), x in (0,1)
 % boundary condition: u(0)=0, u'(1)=e;
-% exact solution: u=exp(x)-1.
+% exact solution: u(x)=exp(x)-1.
 clear all; close all;
 N=10;
 h=1/N;

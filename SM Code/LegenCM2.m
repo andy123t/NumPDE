@@ -1,9 +1,9 @@
 % LegenCM2.m
 % Legendre-collocation method for the model equation: 
-% -mu*u''(x)+nu*u'(x)+rho*u(x)=f(x),  x in (-1,1);
+% -mu*u''(x)+nu*u'(x)+rho*u(x)=f(x),  x in (-1,1),
 % boundary condition: u(-1)=u(1)=0;
 % exact solution: u=sin(kw*pi*x); 
-% RHS: f(x)=mu*kw^2*pi^2*sin(kw*pi*x)+nu*kw*pi*cos(kw*pi*x)+rho*sin(kw*pi*x); 
+% RHS: f(x)=mu*kw^2*pi^2*sin(kw*pi*x)+nu*kw*pi*cos(kw*pi*x)+rho*sin(kw*pi*x)
 % Rmk: Use routines lepoly(); legslb(); legslbdm(); 
 clear all; close all;
 kw=10;
@@ -40,7 +40,7 @@ plot(Nvec,log10(Max_Err),'rd-','MarkerFaceColor','w','LineWidth',1)
 grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 set(gca,'fontsize',12)
-xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 % title('Convergence of Legendre-collocation method','fontsize',12)
 
 % sets axis tick and axis limits

@@ -1,15 +1,15 @@
 % fdm2d1_error.m 
 % finite difference method for 2D problem
-% -d^2u/dx^2-d^2u/dy^2=f(x,y)
+% -{\Delta}u(x,y)=f(x,y), (x,y) in (0,1)x(0,1);
 % f(x,y)=-2*pi^2*exp(pi*(x+y))*(sin(pi*x)*cos(pi*y)+cos(pi*x)*sin(pi*y))
-% exact solution: ue=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)
+% exact solution: u(x,y)=exp(pi*x+pi*y)*sin(pi*x)*sin(pi*y)
 clear all; close all;
-Nvec=2.^[4:10];
+Nvec=2.^(4:10);
 Error=[];
 for n=Nvec
    h=1/n;
-   x=[0:h:1]';
-   y=[0:h:1]';
+   x=(0:h:1)';
+   y=(0:h:1)';
    N=length(x)-1;
    M=length(y)-1;
    [X,Y]=meshgrid(x,y);
@@ -25,30 +25,30 @@ for n=Nvec
    A=kron(eye(M-1),C)+kron(spdiags([e e],[-1 1],M-1,M-1),D);
    % solving the linear system
    f=f';
-   u=zeros(M+1,N+1);
-   u(2:M,2:N)=reshape(A\f(:),N-1,M-1)';
-   u(:,1)=0;
-   u(:,end)=0;
+   un=zeros(M+1,N+1);
+   un(2:M,2:N)=reshape(A\f(:),N-1,M-1)';
+   un(:,1)=0;
+   un(:,end)=0;
    ue=zeros(M+1,N+1);
    % numerical solution
    ue(2:M,2:N)=exp(pi*X+pi*Y).*sin(pi*X).*sin(pi*Y);
-   error=max(max(abs(u-ue)));     % maximum error
+   error=max(max(abs(un-ue)));     % maximum error
    Error=[Error,error];
 end
 plot(log10(Nvec),log10(Error),'ro-','MarkerFaceColor','w','LineWidth',1)
 hold on
-plot(log10(Nvec), log10(Nvec.^(-2)), '--')
+plot(log10(Nvec),log10(Nvec.^(-2)),'--')
 grid on
 %title('Convergence of Finite Difference Method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('log_{10}N','fontsize', 14), ylabel('log_{10}Error','fontsize',14),
+xlabel('log_{10}N','fontsize',14), ylabel('log_{10}Error','fontsize',14),
 
 % add annotation of slope
 ax = [0.46 0.50];
 ay = [0.41 0.46];
-annotation('textarrow',ax,ay,'String','slope = -2 ','fontsize',14)
+annotation('textarrow',ax,ay,'String','slope = -2','fontsize',14)
 
-% computating convergence order
+% computing convergence order
 for i=1:length(Nvec)-1
    order(i)=-log(Error(i)/Error(i+1))/(log(Nvec(i)/Nvec(i+1)));
 end

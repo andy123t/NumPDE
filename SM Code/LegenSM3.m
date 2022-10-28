@@ -44,7 +44,7 @@ plot(Nvec,log10(L2_Err),'bo-','MarkerFaceColor','w','LineWidth',1)
 grid on
 %title('L^2 error of Legendre-Galerkin method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % sets axis tick and axis limits
 xticks(2:2:18)

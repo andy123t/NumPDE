@@ -1,6 +1,6 @@
 % FEM1D.m
 % finite element method for 1D elliptic problem
-% -u_xx+u=f in (0,1)
+% -u_{xx}+u=f, x in (0,1)
 % boundary condition: u(0)=u(1)=0;
 % exact solution: u=x*(1-x)*sin(x)
 % right hand function: f=(4*x-2).*cos(x)+(2+2*x-2*x^2).*sin(x);
@@ -12,7 +12,7 @@ for k=1:length(Num)
     
     M=[1:N;2:N+1];        % information matrix
     % the global node indices of the mesh nodes of all the mesh elements
-    [xv,wv]=jags(2,0,0);  % nodes and weights of Gauss quadrature
+    [xv,wv]=legs(2);      % nodes and weights of Gauss quadrature
     
     K=zeros(N+1);         % global stiffness matrix
     F=zeros(N+1,1);       % RHS load vector

@@ -19,8 +19,8 @@ for N=Nvec
     udprime=-kw*kw*pi*pi*sin(kw*pi*xv);
     f=-udprime+alp*u;   % RHS
     % Solve the collocation system
-    D1=legslbdm(N);           % 1st order differentiation matrix
-    %D1=legslbdiff(N,x);      % 1st order differentiation matrix
+    %D1=legslbdm(N);          % 1st order differentiation matrix
+    D1=legslbdiff(N,xv);       % 1st order differentiation matrix
     D2=D1*D1;                 % 2nd order differentiation matrix
     D=(-D2(2:N-1,2:N-1)+alp*eye(N-2)); % coefficient matrix
     b=f(2:N-1);               % RHS
@@ -40,7 +40,7 @@ grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 %title('Convergence of Legendre-collocation method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % sets axis tick and axis limits
 xticks(0:5:30)

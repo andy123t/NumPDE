@@ -1,6 +1,6 @@
 % ChebSM1.m
 % Chebyshev spectral-Galerkin method for the model equation
-% -u_xx+u=f in (-1,1)
+% -u_xx+u=f, x in (-1,1);
 % boundary condition: u(-1)=u(1)=0;
 % exact solution: u=sin(kw*pi*x);
 % RHS: f=kw*kw*pi^2*sin(kw*pi*x)+sin(kw*pi*x);
@@ -53,7 +53,7 @@ grid on
 legend('L^2 error','L^{\infty} error','location','NorthEast')
 % title('Convergence of Chebyshev-Galerkin method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % sets axis tick and axis limits
 xticks(30:10:80)

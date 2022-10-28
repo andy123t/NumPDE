@@ -1,8 +1,8 @@
 % fdm_polar.m
 % finite difference method for polar coordinate problem
-% -{Delta}_{r,theta}u(r,theta)=f(r,theta), [0,1]x[0,2*pi]
+% -{\Delta}_{r,theta}u(r,theta)=f(r,theta), [0,1]x[0,2*pi]
 % u(1,theta)=0,  theta in [0,2*pi]
-% exact solution: ue=(1-r^2)*r*(sin(theta)+cos(theta))/4.
+% exact solution: u=(1-r^2)*r*(sin(theta)+cos(theta))/4.
 clear all; close all;
 N=50;
 M=100;

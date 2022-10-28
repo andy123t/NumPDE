@@ -6,7 +6,7 @@
 % Rmk: Use routines lepoly(); legs(); lepolym();
 clear all; close all;
 kw=1;
-Nvec=[4:2:28];
+Nvec=4:2:28;
 L2_Err=[]; Max_Err=[];  % initialization error
 % Loop for various modes N to calculate numerical errors
 for N=Nvec
@@ -39,7 +39,7 @@ grid on,
 legend('L^2 error','L^{\infty} error')
 % title('Convergence of Legendre-Galerkin method','fontsize',12)
 set(gca,'fontsize',12)
-xlabel('N','fontsize', 14), ylabel('log_{10}Error','fontsize',14)
+xlabel('N','fontsize',14), ylabel('log_{10}Error','fontsize',14)
 
 % print -dpng -r600 LegenSM.png
 % print -depsc2 LegenSM.eps
