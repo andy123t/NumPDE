@@ -14,7 +14,8 @@ L2_Err=[];  condnv=[];
 for N=Nvec
     [xv,wv]=legs(N+1);        % Legendre-Gauss points and weights
     Lm=lepolym(N,xv);         % matrix of Legendre polynomals
-    yv=1/2*(xv+1);            % variable substitution 
+    yv=1/2*(xv+1);            % variable substitution
+    wy=wv/2;
     U=(1-yv).^2.*exp(yv)-1;   % exact solution
     F=(2-4*yv).*exp(yv)-1;    % RHS in [0,1] 
     

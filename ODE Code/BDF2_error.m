@@ -12,7 +12,7 @@ for k=1:length(Nvec)
     t=0:h:1;                 % interval partition
     un(1)=0;                 % initial value
     % Trapezoidal rule to compute un(2)
-    un(2)=2/(2+h)*un(1)+h/(2+h)*(t(1)^2+t(1)+un(1))+h/(2+h)*(t(2)^2+t(2));
+    un(2)=2/(2+h)*un(1)+h/(2+h)*(t(1)^2+t(1)-un(1))+h/(2+h)*(t(2)^2+t(2));
     % BDF2 method
     for n=1:N-1
         un(n+2)=4/(3+2*h)*un(n+1)-1/(3+2*h)*un(n)+2*h/(3+2*h)*(t(n+2)^2+t(n+2));

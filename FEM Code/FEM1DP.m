@@ -52,7 +52,7 @@ for k=1:length(Num)
     node_Err=[node_Err, node_error];
     L2_Err=[L2_Err, sqrt(sum(L2_err))];
     H1_Err=[H1_Err, sqrt(sum(L2_err)+sum(H1_err))];
-    doff=N+1;    % degrees of freedom, number of unknowns
+    doff=N-1;    % degrees of freedom, number of unknowns
     DOF=[DOF, doff];
 end
 loglog(DOF,node_Err,'r+-','LineWidth',1)
@@ -62,7 +62,7 @@ hold on
 loglog(DOF,H1_Err,'m*-','LineWidth',1)
 hold on
 grid on
-legend('L^2 error','L^{\infty} error','H^1 error','location','SouthWest')
+legend('Max nodal error','L^2 error','H^1 error','location','SouthWest')
 % title('Convergence of finite element method','fontsize',14)
 set(gca,'FontName','Times New Roman','FontSize',12)
 xlabel('Number of degrees of freedom','fontsize',14)
@@ -76,9 +76,9 @@ ylim([10^(-8) 10^(-1)])
 
 % calculating of convergence order
 for k=1:length(Num)-1
-    node_order(k)=log(node_Err(k)/node_Err(k+1))/(log(DOF(k)/DOF(k+1)));
-    L2_order(k)=log(L2_Err(k)/L2_Err(k+1))/(log(DOF(k)/DOF(k+1)));
-    H1_order(k)=log(H1_Err(k)/H1_Err(k+1))/(log(DOF(k)/DOF(k+1)));
+    node_order(k)=-log(node_Err(k)/node_Err(k+1))/(log(Num(k)/Num(k+1)));
+    L2_order(k)=-log(L2_Err(k)/L2_Err(k+1))/(log(Num(k)/Num(k+1)));
+    H1_order(k)=-log(H1_Err(k)/H1_Err(k+1))/(log(Num(k)/Num(k+1)));
 end
 node_order
 L2_order

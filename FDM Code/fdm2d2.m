@@ -34,5 +34,5 @@ ue=1/(9+pi^2)*(cos(3*X)).*(sin(pi*Y));
 format long
 % value of u and ue in the selected points (i*pi/4,j/4), i,j=1,2,3.
 u_select=un(N/4+1:N/4:3*N/4+1,N/4+1:N/4:3*N/4+1)
-ue_select=un(N/4+1:N/4:3*N/4+1,N/4+1:N/4:3*N/4+1)
+ue_select=ue(N/4+1:N/4:3*N/4+1,N/4+1:N/4:3*N/4+1)
 

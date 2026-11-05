@@ -23,7 +23,7 @@ for N=Nvec
     b=[1; f(2:N-1); 0];       % RHS
     un=D\b;                   % Solve the system 
     
-    L2_error=sqrt(((un-u).^2)'*wv);   % L^2 error
+    L2_error=sqrt(((un-u).^2)'*wv/2);   % L^2 error
     L2_Err=[L2_Err;L2_error];
     condnv=[condnv,cond(D)];
 end
